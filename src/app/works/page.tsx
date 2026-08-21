@@ -1,9 +1,14 @@
-import type { Metadata } from "next";
 import Reveal from "@/components/layout/Reveal";
 import WorkCard from "@/components/work/WorkCard";
 import { hayDemo, proyectos } from "@/data/work";
+import { meta } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Works" };
+export const metadata = meta({
+  title: "Works",
+  description:
+    "Proyectos de contenido, pauta y gestión de redes para marcas de gastronomía, indumentaria, bienestar y comercio local.",
+  path: "/works",
+});
 
 /** Grilla de proyectos. Dos columnas en desktop, una en mobile. */
 export default function Works() {

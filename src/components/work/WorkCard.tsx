@@ -5,11 +5,7 @@ import type { Proyecto } from "@/data/work";
 /** La grilla es 1 / 2 columnas (mobile / md). */
 const SIZES = "(max-width: 767px) 100vw, 50vw";
 
-/**
- * Tile de la grilla: portada 3:2 y debajo el nombre, el rubro y el año.
- * La foto entra en gris y toma color al pasar por encima — el único gesto de
- * color en todo el sitio.
- */
+/** Tile de la grilla: portada 3:2 y debajo el nombre, el rubro y el año. */
 export default function WorkCard({
   proyecto,
   priority = false,
@@ -28,7 +24,7 @@ export default function WorkCard({
           fill
           sizes={SIZES}
           priority={priority}
-          className="object-cover grayscale transition duration-700 ease-[var(--ease-soft)] group-hover:scale-[1.03] group-hover:grayscale-0 motion-reduce:transform-none"
+          className="object-cover transition-transform duration-700 ease-[var(--ease-soft)] group-hover:scale-[1.03] motion-reduce:transform-none"
         />
       </figure>
 

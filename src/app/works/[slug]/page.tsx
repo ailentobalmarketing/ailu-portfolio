@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/layout/Reveal";
 import TransitionLink from "@/components/layout/TransitionLink";
 import { getProyecto, proyectos } from "@/data/work";
+import { JsonLd, breadcrumbJsonLd, meta, proyectoJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
   return proyectos.map((p) => ({ slug: p.slug }));
@@ -14,7 +15,14 @@ export async function generateMetadata({
 }: PageProps<"/works/[slug]">): Promise<Metadata> {
   const { slug } = await params;
   const p = getProyecto(slug);
-  return p ? { title: p.nombre, description: p.resumen } : {};
+  if (!p) return {};
+
+  return meta({
+    title: p.nombre,
+    description: `${p.resumen} ${p.rubro}, ${p.anio}.`,
+    path: `/works/${p.slug}`,
+    image: p.fotos[0]?.src,
+  });
 }
 
 /**
@@ -30,6 +38,8 @@ export default async function Caso({ params }: PageProps<"/works/[slug]">) {
 
   return (
     <article className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
+      <JsonLd data={proyectoJsonLd(p)} />
+      <JsonLd data={breadcrumbJsonLd(p)} />
       <Reveal>
         <TransitionLink
           href="/works"

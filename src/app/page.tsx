@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Reveal from "@/components/layout/Reveal";
-import { bio, formacion, herramientas, queHago, site } from "@/data/site";
+import WorkMarquee from "@/components/work/WorkMarquee";
+import { bio, formacion, herramientas, queHago } from "@/data/site";
 
 /**
  * Bio — la portada. Su recorrido contado en primera persona, y debajo la
@@ -10,34 +10,24 @@ export default function Bio() {
   return (
     <>
       <section className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
-        <Reveal as="h1" className="text-step-3 u-measure">
+        <Reveal as="h1" className="u-measure text-step-3">
           {bio.titular}
         </Reveal>
 
-        <div className="mt-[clamp(2.5rem,2rem+3vw,4.5rem)] grid gap-[clamp(2rem,1rem+4vw,5rem)] md:grid-cols-[1fr_minmax(0,22rem)] md:items-start">
-          <div className="flex flex-col gap-6">
-            {bio.parrafos.map((p, i) => (
-              <Reveal key={p.slice(0, 24)} as="p" delay={0.06 * (i + 1)}>
-                <span className="u-measure block text-step-0 text-ink/80">
-                  {p}
-                </span>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2}>
-            <Image
-              src="/bio/retrato.jpg"
-              alt={site.nombre}
-              width={1200}
-              height={1500}
-              sizes="(max-width: 767px) 100vw, 22rem"
-              priority
-              className="w-full grayscale"
-            />
-          </Reveal>
+        <div className="mt-[clamp(2.5rem,2rem+3vw,4.5rem)] flex flex-col gap-6">
+          {bio.parrafos.map((p, i) => (
+            <Reveal key={p.slice(0, 24)} as="p" delay={0.06 * (i + 1)}>
+              <span className="u-measure block text-step-0 text-ink/80">
+                {p}
+              </span>
+            </Reveal>
+          ))}
         </div>
       </section>
+
+      {/* ponytail: en flujo, a lo ancho. Lo de superponerla a la bio quedó
+          descartado; qué va a la derecha en desktop se define después. */}
+      <WorkMarquee className="mt-[var(--section-y)]" />
 
       <section className="u-shell mt-[var(--section-y)]">
         <Reveal>

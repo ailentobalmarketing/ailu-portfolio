@@ -211,6 +211,36 @@
 }
 
 /* ============================================================
+   CINTA DE TRABAJOS
+   Scroll horizontal real (lo mueve solo WorkMarquee con rAF). El snap se
+   activa SÓLO mientras el usuario tiene el control (`data-libre`, lo pone el
+   componente): con snap mandatory siempre puesto, el scroll automático queda
+   trabado contra el punto de anclaje y no avanza un píxel.
+   ============================================================ */
+.marquee-rail {
+  /* A sangre, con el margen del sitio a los costados para que el primer y el
+     último item no queden pegados al borde. */
+  padding-inline: var(--gutter);
+  scrollbar-width: none;
+  scroll-behavior: auto;
+}
+
+.marquee-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.marquee-rail[data-libre] {
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-rail {
+    scroll-snap-type: x proximity;
+  }
+}
+
+/* ============================================================
    TRANSICIÓN ENTRE PÁGINAS — View Transitions API, la dispara
    PageTransition.tsx. La página nueva se revela desde el centro por encima
    de la vieja, que se difumina. Scopeado con html[data-vt="page"].

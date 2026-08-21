@@ -5,6 +5,7 @@ import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/layout/PageTransition";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { site } from "@/data/site";
+import { JsonLd, personJsonLd, robotsMeta } from "@/lib/seo";
 
 import "./globals.css";
 
@@ -24,8 +25,13 @@ export const metadata: Metadata = {
   },
   description: site.descripcion,
   authors: [{ name: site.nombre }],
-  // ⚠️ TEMPORAL: ver src/app/robots.ts. Sale cuando entren los proyectos reales.
-  robots: { index: false, follow: false },
+  creator: site.nombre,
+  applicationName: site.nombre,
+  keywords: [...site.sabeSobre],
+  alternates: { canonical: site.url },
+  // El interruptor vive en src/data/site.ts (INDEXABLE).
+  robots: robotsMeta,
+  formatDetection: { telephone: false, address: false, email: false },
   openGraph: {
     type: "website",
     locale: "es_AR",
@@ -40,6 +46,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="es" className={dm.variable}>
       <body>
+        <JsonLd data={personJsonLd()} />
         <SmoothScroll>
           <PageTransition>
             <Nav />

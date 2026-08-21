@@ -16,7 +16,35 @@ export const site = {
   whatsapp: "https://wa.me/5492944393813",
   linkedin: "https://www.linkedin.com/in/ailén-tobal",
   url: "https://ailu.rstudios.ar",
+  /** Para el JSON-LD: a qué se dedica, en vocabulario de schema.org. */
+  ocupacion: "Especialista en marketing digital y gestión de redes sociales",
+  alumnoDe: [
+    "Escuela de Comercio Manuel Belgrano — Universidad Nacional de Córdoba",
+    "Universidad Blas Pascal",
+    "Coderhouse",
+  ],
+  sabeSobre: [
+    "Marketing digital",
+    "Gestión de redes sociales",
+    "Meta Ads",
+    "Estrategia de contenido",
+    "Producción audiovisual",
+    "Google Business Profile",
+  ],
 } as const;
+
+/**
+ * 🔴 INTERRUPTOR ÚNICO DE INDEXACIÓN.
+ *
+ * Mientras haya proyectos de prueba (`src/data/work.ts`), el sitio no tiene que
+ * aparecer en buscadores: son marcas inventadas y se leerían como trabajo real
+ * de Ailu. Toda la capa de SEO está construida y lista; sólo espera que esto
+ * pase a `true`.
+ *
+ * Al poner los proyectos reales: cambiar acá y nada más — de esta constante
+ * salen el robots.txt, el sitemap y el meta robots de todas las páginas.
+ */
+export const INDEXABLE = false;
 
 export const nav = [
   { href: "/", label: "Bio" },

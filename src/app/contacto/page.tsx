@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
 import Reveal from "@/components/layout/Reveal";
 import { site } from "@/data/site";
+import { meta } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contacto" };
+export const metadata = meta({
+  title: "Contacto",
+  description:
+    "Escribime por mail, WhatsApp o LinkedIn. Estrategia, contenido y campañas de Meta Ads para marcas de Argentina.",
+  path: "/contacto",
+});
 
 const canales = [
   { label: "Mail", valor: site.email, href: `mailto:${site.email}` },

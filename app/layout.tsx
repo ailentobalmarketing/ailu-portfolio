@@ -26,6 +26,9 @@ export const metadata: Metadata = {
   },
   description: perfil.descripcion,
   authors: [{ name: perfil.nombre }],
+  // ⚠️ TEMPORAL: ver app/robots.ts. El robots.txt no alcanza si alguien linkea
+  // el sitio; el meta sí lo saca del índice.
+  robots: { index: false, follow: false },
   openGraph: {
     type: "website",
     locale: "es_AR",

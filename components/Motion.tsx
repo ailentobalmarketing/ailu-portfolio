@@ -48,7 +48,7 @@ function animateElement(
     wordsClass: "word",
     onSplit(self) {
       const targets = type === "words" ? self.words : self.lines;
-      gsap.set(targets, { yPercent: 100 });
+      gsap.set(targets, { yPercent: 150 });
 
       const animation = gsap.to(targets, {
         yPercent: 0,

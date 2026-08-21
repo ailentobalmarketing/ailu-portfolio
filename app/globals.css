@@ -6,6 +6,8 @@
   --l: #f3f0ea; /* fondo: hueso */
   --d: #1a1714; /* tinta */
   --acc: #8c4a3f; /* ladrillo apagado */
+  --mut: #6e675e; /* texto secundario */
+  --line: rgb(26 23 20 / 0.12); /* hairline sobre hueso */
 }
 
 * {
@@ -37,27 +39,27 @@ h4,
 h5,
 h6 {
   font-family: var(--f-h);
-  line-height: 0.85;
+  line-height: 0.88;
   text-transform: uppercase;
 }
 
 h1 {
-  font-size: clamp(5rem, 20vw, 20rem);
+  font-size: clamp(3rem, 13vw, 13rem);
 }
 h2 {
-  font-size: clamp(4.5rem, 15vw, 15rem);
+  font-size: clamp(2.75rem, 10vw, 10rem);
 }
 h3 {
-  font-size: clamp(4rem, 12vw, 12rem);
+  font-size: clamp(2.5rem, 8vw, 8rem);
 }
 h4 {
-  font-size: clamp(3.5rem, 10vw, 10rem);
+  font-size: clamp(2.25rem, 6.5vw, 6.5rem);
 }
 h5 {
-  font-size: clamp(3rem, 8vw, 8rem);
+  font-size: clamp(2rem, 5.5vw, 5.5rem);
 }
 h6 {
-  font-size: clamp(2.5rem, 6vw, 6rem);
+  font-size: clamp(1.75rem, 4.5vw, 4.5rem);
 }
 
 p {
@@ -133,29 +135,6 @@ html.lenis body {
 }
 
 @media (pointer: fine) {
-  #custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 20001;
-    width: 28px;
-    height: 28px;
-    opacity: 0;
-    -webkit-mask: url("/icons/cursor.png") center / contain no-repeat;
-    mask: url("/icons/cursor.png") center / contain no-repeat;
-    background-color: var(--d);
-    pointer-events: none;
-    user-select: none;
-    transform: translate3d(var(--x, -100px), var(--y, -100px), 0)
-      translate(-50%, -50%);
-    transition: opacity 120ms ease;
-    will-change: transform, opacity;
-  }
-
-  #custom-cursor.is-visible {
-    opacity: 1;
-  }
-
   .container {
     padding: 2.25rem;
   }

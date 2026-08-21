@@ -19,11 +19,6 @@ export default function Nav() {
           <span className="nav-wordmark">{perfil.nombre}</span>
         </a>
       </div>
-      <div className="nav-icon">
-        <span className="nav-mark" aria-hidden="true">
-          ✳
-        </span>
-      </div>
       <div className="nav-toggler">
         <p>Menu</p>
       </div>

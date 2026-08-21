@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { humane, dmMono, inter } from "./fonts";
 import { perfil } from "@/content/ailu";
 import Motion from "@/components/Motion";
@@ -48,9 +47,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Nav />
         {children}
         <Motion />
-        {/* El cursor de Lemon: es un módulo suelto sin dependencias, se carga
-            como script clásico en vez de meterlo al bundle. */}
-        <Script src="/js/cursor.js" strategy="afterInteractive" />
       </body>
     </html>
   );

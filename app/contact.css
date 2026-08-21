@@ -16,19 +16,10 @@
   text-align: center;
 }
 
-.contact-cube-wrap {
-  position: relative;
-  width: 100%;
-}
-
-.contact-cube-wrap #cube-canvas {
-  position: absolute;
-  inset: 0;
-  width: 100% !important;
-  height: 100% !important;
-}
-
+/* Sin el cubo en el medio, el bloque de contacto quedaba pegado al titular
+   con todo el aire abajo. */
 .contact-footer {
+  margin-top: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -88,7 +88,7 @@
 }
 
 .work-slide-title {
-  font-size: clamp(4rem, 15vw, 15rem);
+  font-size: clamp(2.75rem, 10vw, 10rem);
   text-align: center;
   color: var(--l);
   will-change: transform;

@@ -37,18 +37,20 @@ export default function Perfil() {
           ))}
         </div>
         <div className="hero-footer">
-          <div className="hero-footer-col">
-            {titulares.perfilFooterIzq.map((t, i) => (
-              <p
-                key={t}
-                data-animate-variant="slide"
-                data-animate-on-scroll="false"
-                data-animate-delay={1 + i * 0.1}
-              >
-                {t}
-              </p>
-            ))}
-          </div>
+          {titulares.perfilFooterIzq.length > 0 && (
+            <div className="hero-footer-col">
+              {titulares.perfilFooterIzq.map((t, i) => (
+                <p
+                  key={t}
+                  data-animate-variant="slide"
+                  data-animate-on-scroll="false"
+                  data-animate-delay={1 + i * 0.1}
+                >
+                  {t}
+                </p>
+              ))}
+            </div>
+          )}
           <div className="hero-footer-col">
             <p
               data-animate-variant="slide"
@@ -140,60 +142,71 @@ export default function Perfil() {
             </h3>
           </div>
 
-          <div className="ficha-row">
-            <span className="micro ficha-label">Herramientas</span>
-            <div className="ficha-tools">
-              {herramientas.map((h) => (
-                <div className="ficha-tool" key={h.grupo}>
-                  <span className="micro">{h.grupo}</span>
-                  <p className="prose">{h.items}</p>
-                </div>
-              ))}
+          {/* Tres bloques con la MISMA forma: etiqueta a la izquierda, valor a
+              la derecha, una línea por fila. Antes cada bloque tenía su propio
+              formato y no se podía escanear. */}
+          <dl className="ficha-tabla">
+            <div className="ficha-bloque">
+              <dt className="micro ficha-bloque-label">Herramientas</dt>
             </div>
-          </div>
-
-          <div className="ficha-row">
-            <span className="micro ficha-label">Experiencia</span>
-            <div className="ficha-entries">
-              {experiencia.map((e) => (
-                <div className="ficha-entry" key={e.titulo}>
-                  <h6>{e.titulo}</h6>
-                  {e.meta && <p className="micro ficha-meta">{e.meta}</p>}
-                  {e.texto && <p className="prose">{e.texto}</p>}
-                  {e.items && (
-                    <ul className="ficha-list">
-                      {e.items.map((i) => (
-                        <li key={i}>{i}</li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="ficha-row">
-            <span className="micro ficha-label">Formación</span>
-            <div className="ficha-entries">
-              {formacion.map((f) => (
-                <div className="ficha-entry" key={f.titulo}>
-                  <h6>{f.titulo}</h6>
-                  {f.meta && <p className="micro ficha-meta">{f.meta}</p>}
-                  {f.texto && <p className="prose">{f.texto}</p>}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="ficha-row">
-            <span className="micro ficha-label">Contacto</span>
-            <div className="ficha-entries">
-              <div className="ficha-entry">
-                <h6>{perfil.email}</h6>
-                <p className="micro ficha-meta">{perfil.telefono}</p>
+            {herramientas.map((h) => (
+              <div className="ficha-fila" key={h.grupo}>
+                <dt>{h.grupo}</dt>
+                <dd>{h.items}</dd>
               </div>
+            ))}
+
+            <div className="ficha-bloque">
+              <dt className="micro ficha-bloque-label">Experiencia</dt>
             </div>
-          </div>
+            {experiencia.map((e) => (
+              <div className="ficha-fila" key={e.titulo}>
+                <dt>{e.titulo.split(" — ")[0]}</dt>
+                <dd>
+                  {e.titulo.includes(" — ") && (
+                    <span className="ficha-rol">
+                      {e.titulo.split(" — ")[1]}
+                    </span>
+                  )}
+                  {e.meta && <span className="ficha-dato">{e.meta}</span>}
+                  {e.texto && <span>{e.texto}</span>}
+                  {e.items && <span>{e.items.join(" · ")}</span>}
+                </dd>
+              </div>
+            ))}
+
+            <div className="ficha-bloque">
+              <dt className="micro ficha-bloque-label">Formación</dt>
+            </div>
+            {formacion.map((f) => (
+              <div className="ficha-fila" key={f.titulo}>
+                <dt>{f.titulo}</dt>
+                <dd>{f.meta ?? f.texto}</dd>
+              </div>
+            ))}
+
+            <div className="ficha-bloque">
+              <dt className="micro ficha-bloque-label">Contacto</dt>
+            </div>
+            <div className="ficha-fila">
+              <dt>Mail</dt>
+              <dd>
+                <a href={`mailto:${perfil.email}`}>{perfil.email}</a>
+              </dd>
+            </div>
+            <div className="ficha-fila">
+              <dt>WhatsApp</dt>
+              <dd>
+                <a href={perfil.whatsapp} target="_blank" rel="noopener">
+                  {perfil.telefono}
+                </a>
+              </dd>
+            </div>
+            <div className="ficha-fila">
+              <dt>Base</dt>
+              <dd>{perfil.ubicacion}</dd>
+            </div>
+          </dl>
         </div>
       </section>
 

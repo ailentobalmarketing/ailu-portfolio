@@ -10,7 +10,6 @@ nav {
 }
 
 .nav-logo,
-.nav-icon,
 .nav-toggler {
   flex: 1;
 }
@@ -27,19 +26,6 @@ nav {
 .nav-logo a img {
   width: auto;
   height: 1.65rem;
-  object-fit: contain;
-}
-
-.nav-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-}
-
-.nav-icon img {
-  width: auto;
-  height: 1.75rem;
   object-fit: contain;
 }
 
@@ -151,27 +137,6 @@ nav {
   overflow: hidden;
 }
 
-.menu-overlay .menu-img {
-  position: absolute;
-  top: 35%;
-  left: 50%;
-  width: 150px;
-  aspect-ratio: 5/7;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
-}
-
-.menu-overlay .menu-img img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 0.5rem;
-  transform: translateY(0);
-  will-change: transform;
-}
-
 .menu-overlay .menu-links-wrapper {
   position: absolute;
   left: 0;
@@ -196,7 +161,7 @@ nav {
   display: inline-block;
   overflow: hidden;
   font-family: var(--f-h);
-  font-size: 20rem;
+  font-size: 11rem;
   font-weight: 900;
   line-height: 0.85;
   text-transform: uppercase;
@@ -215,7 +180,7 @@ nav {
   bottom: 0;
   left: 0;
   width: 400px;
-  height: 0.75rem;
+  height: 0.5rem;
   background-color: var(--l);
   will-change: transform, width;
 }
@@ -235,10 +200,6 @@ nav {
     height: 1.5rem;
   }
 
-  .nav-icon {
-    display: none;
-  }
-
   .nav-toggler {
     transform: translateY(0.1rem);
   }
@@ -247,7 +208,6 @@ nav {
     display: none;
   }
 
-  .menu-overlay .menu-img,
   .menu-overlay .link-highlighter {
     display: none;
   }
@@ -259,6 +219,6 @@ nav {
   }
 
   .menu-overlay .menu-link a {
-    font-size: 7rem;
+    font-size: 4.5rem;
   }
 }

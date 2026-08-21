@@ -8,7 +8,7 @@
 export const perfil = {
   nombre: "Ailén Tobal",
   rol: "Marketing digital y gestión de redes",
-  ubicacion: "Córdoba, Argentina",
+  ubicacion: "Argentina",
   disponibilidad: "Disponible para proyectos",
   email: "ailentobal.marketing@gmail.com",
   telefono: "+54 2944 393813",
@@ -35,7 +35,7 @@ export const sobreMi: BloqueSobreMi[] = [
       "Disfruto la parte creativa y armar estrategias y contenido que de verdad funcionen.",
   },
   {
-    titular: "El proceso completo",
+    titular: "De idea a número",
     texto:
       "Pienso la estrategia, produzco el contenido, llevo las campañas de Meta Ads y después miro los números para entender qué funcionó y ajustar lo que sigue.",
   },
@@ -107,24 +107,20 @@ export type PasoCard = {
   id: string;
   num: string;
   name: string;
-  img: string;
-  alt: string;
   description: string;
   items: string[];
 };
 
 /**
  * Los mismos 5 pasos, en formato tarjeta para la sección pinneada.
- * `items` va recortado a propósito: la tarjeta mide 325×500 y la lista completa
- * del PDF no entra. La completa vive arriba, en `pasos`.
+ * `items` va recortado a propósito: la tarjeta no da para la lista completa
+ * del PDF. La completa vive arriba, en `pasos`.
  */
 export const pasosCards: PasoCard[] = [
   {
     id: "card-1",
     num: "01",
     name: "Estrategia",
-    img: "/pasos/s1.jpg",
-    alt: "Estrategia",
     description:
       "Antes de publicar nada: a quién le hablamos, para qué, y cómo se ve el camino desde que te descubren hasta que te compran.",
     items: [
@@ -139,8 +135,6 @@ export const pasosCards: PasoCard[] = [
     id: "card-2",
     num: "02",
     name: "Contenido",
-    img: "/pasos/s2.jpg",
-    alt: "Contenido",
     description:
       "El concepto, la dirección de arte y la producción. Filmo, edito y escribo: no hace falta un equipo aparte.",
     items: [
@@ -155,8 +149,6 @@ export const pasosCards: PasoCard[] = [
     id: "card-3",
     num: "03",
     name: "Pauta",
-    img: "/pasos/s3.jpg",
-    alt: "Pauta",
     description:
       "Meta Ads con estructura: campañas separadas por objetivo, públicos que tienen sentido y presupuesto donde rinde.",
     items: [
@@ -171,8 +163,6 @@ export const pasosCards: PasoCard[] = [
     id: "card-4",
     num: "04",
     name: "Comunidad",
-    img: "/pasos/s4.jpg",
-    alt: "Comunidad",
     description:
       "Lo que pasa después del clic. Responder rápido, con criterio, y llevar la consulta hasta donde se cierra la venta.",
     items: [
@@ -187,8 +177,6 @@ export const pasosCards: PasoCard[] = [
     id: "card-5",
     num: "05",
     name: "Medición",
-    img: "/pasos/s5.jpg",
-    alt: "Medición",
     description:
       "Mirar los números para saber qué funcionó, no para llenar un reporte. Y ajustar lo que sigue con eso.",
     items: [
@@ -275,7 +263,6 @@ export const menuLinks = [
 
 /** Las dos columnas de texto del menú full-screen. */
 export const menuCopy = {
-  img: "/perfil/menu.jpg",
   col1: [
     [
       { text: "Ailén Tobal" },
@@ -304,12 +291,12 @@ export const menuCopy = {
 /** Titulares grandes de cada página. Van en Humane a 40-50vw. */
 export const titulares = {
   homeHero: "Ailén Tobal",
-  homeFooterIzq: ["Marketing digital", "Córdoba, Argentina"],
+  homeFooterIzq: ["Marketing digital", "Argentina"],
   homeFooterDer: "Disponible para proyectos",
-  // A 40vw entra UNA palabra por lado — con dos se parten en dos líneas y se
-  // comen la pantalla. Juntas se leen "SE · imagen · MIDE".
-  perfilHero: ["Se", "Mide"],
-  perfilFooterIzq: ["Estrategia y pauta", "Contenido propio"],
+  // Dos palabras cortas y del mismo largo: se equilibran en cualquier pantalla
+  // y juntas se leen "MENOS · imagen · RUIDO".
+  perfilHero: ["Menos", "Ruido"],
+  perfilFooterIzq: [],
   perfilFooterDer: "Perfil 2026",
   particula: "Contenido que rinde",
   pasosDesktop: "Cómo trabajo",

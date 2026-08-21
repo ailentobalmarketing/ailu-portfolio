@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Contacto from "@/components/Contacto";
-import ContactCube from "@/components/ContactCube";
 import { perfil } from "@/content/ailu";
 
 export const metadata: Metadata = { title: "Contacto" };
@@ -19,9 +18,6 @@ export default function ContactoPage() {
             hoy. Escribime y lo vemos.
           </h3>
         </div>
-        <div className="contact-cube-wrap">
-          <canvas id="cube-canvas" />
-        </div>
         <div className="contact-footer">
           <p data-animate-variant="slide-lines" data-animate-on-scroll="true">
             {perfil.email} <br />
@@ -31,7 +27,6 @@ export default function ContactoPage() {
           </p>
         </div>
       </section>
-      <ContactCube />
       <Contacto />
     </>
   );

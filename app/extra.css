@@ -6,18 +6,13 @@
 
 /* ── nav: marca denominativa en vez del logo de Lemon ─────────────────────── */
 
-.nav-wordmark,
-.nav-mark {
+.nav-wordmark {
   font-family: var(--f-m);
   font-size: 0.75rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--l);
-}
-
-.nav-mark {
-  font-size: 1rem;
 }
 
 /* ── tarjetas del proceso: numeración y lista corta ───────────────────────── */
@@ -36,7 +31,7 @@
 }
 
 .card-title h6 {
-  font-size: 3.25rem;
+  font-size: 2.5rem;
   line-height: 0.85;
 }
 
@@ -46,8 +41,8 @@
 }
 
 .card-list {
-  margin-top: 0.875rem;
-  padding-top: 0.75rem;
+  margin-top: auto;
+  padding-top: 0.875rem;
   border-top: 1px solid rgb(243 240 234 / 0.18);
   list-style: none;
 }
@@ -65,14 +60,18 @@
 
 .clients-marquee-name {
   font-family: var(--f-h);
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(2rem, 4vw, 4rem);
   font-weight: 500;
   line-height: 0.85;
   text-transform: uppercase;
   color: var(--d);
 }
 
-/* ── la ficha: herramientas, experiencia, formación ───────────────────────── */
+/* ── la ficha ─────────────────────────────────────────────────────────────────
+   Ficha técnica, no secciones. Una sola forma para los tres bloques: etiqueta
+   izquierda, valor derecha, una fila por línea. Antes cada bloque tenía su
+   propio formato apilado y no se podía escanear.
+   ──────────────────────────────────────────────────────────────────────────── */
 
 .ficha {
   width: 100%;
@@ -82,79 +81,74 @@
 }
 
 .ficha-head {
-  margin-bottom: 4rem;
+  margin-bottom: 3.5rem;
 }
 
-.ficha-row {
-  display: flex;
-  gap: 2.5rem;
-  padding: 2.5rem 0;
-  border-top: 1px solid var(--d);
+.ficha-tabla {
+  max-width: 68rem;
 }
 
-.ficha-label {
-  flex: 0 0 12rem;
-  padding-top: 0.35rem;
+.ficha-bloque {
+  padding: 2.75rem 0 0.875rem;
+  border-bottom: 1px solid var(--d);
+}
+
+.ficha-bloque:first-child {
+  padding-top: 0;
+}
+
+.ficha-bloque-label {
   color: var(--acc);
 }
 
-.ficha-tools,
-.ficha-entries {
-  display: flex;
-  flex: 1;
-  flex-wrap: wrap;
-  gap: 2.5rem 3rem;
+.ficha-fila {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 1.5rem 2.5rem;
+  padding: 0.875rem 0;
+  border-bottom: 1px solid var(--line, rgb(26 23 20 / 0.12));
 }
 
-.ficha-tool {
-  flex: 1 1 16rem;
-}
-
-.ficha-tool .micro {
-  display: block;
-  margin-bottom: 0.5rem;
-}
-
-.ficha-entry {
-  flex: 1 1 22rem;
-}
-
-.ficha-entry h6 {
-  font-size: 2.25rem;
-  line-height: 0.9;
-}
-
-.ficha-meta {
-  display: block;
-  margin-top: 0.5rem;
-  color: var(--acc);
-}
-
-.ficha-entry .prose {
-  margin-top: 0.75rem;
-  font-size: 0.9375rem;
-}
-
-.ficha-list {
-  margin-top: 0.875rem;
-  list-style: none;
-}
-
-.ficha-list li {
+.ficha-fila dt {
   font-family: var(--f-nm);
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
   font-weight: 500;
-  line-height: 1.5;
+  line-height: 1.4;
   text-transform: uppercase;
-  color: var(--d);
-  padding-left: 1.1rem;
-  text-indent: -1.1rem;
 }
 
-.ficha-list li::before {
-  content: "—";
-  margin-right: 0.45rem;
-  opacity: 0.35;
+.ficha-fila dd {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: var(--f-nm);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--mut, #6e675e);
+}
+
+.ficha-rol {
+  font-weight: 500;
+  color: var(--d);
+}
+
+.ficha-dato {
+  font-family: var(--f-m);
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  color: var(--acc);
+}
+
+.ficha-fila dd a {
+  color: var(--d);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(26 23 20 / 0.25);
+  width: max-content;
+  transition: border-color 0.3s ease;
+}
+
+.ficha-fila dd a:hover {
+  border-bottom-color: var(--d);
 }
 
 /* ── resultados del caso ──────────────────────────────────────────────────── */
@@ -167,7 +161,7 @@
 }
 
 .caso-resultados h4 {
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(2rem, 4vw, 4rem);
 }
 
 .caso-resultados .micro {
@@ -228,6 +222,6 @@
   }
 
   .clients-marquee-name {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 }

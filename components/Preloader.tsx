@@ -54,9 +54,12 @@ export default function Preloader() {
         new SplitText(el, { type: "words", wordsClass: "word" });
       });
 
-      gsap.set(scope.querySelectorAll(".split-overlay .intro-title .char span"), {
-        y: "0%",
-      });
+      gsap.set(
+        scope.querySelectorAll(".split-overlay .intro-title .char span"),
+        {
+          y: "0%",
+        },
+      );
 
       const tl = gsap.timeline({
         defaults: { ease: "hop" },
@@ -76,7 +79,9 @@ export default function Preloader() {
         reveal();
       }
 
-      const tagEls = gsap.utils.toArray<HTMLElement>(scope.querySelectorAll(".tag"));
+      const tagEls = gsap.utils.toArray<HTMLElement>(
+        scope.querySelectorAll(".tag"),
+      );
 
       tagEls.forEach((tag, i) => {
         tl.to(
@@ -144,7 +149,7 @@ export default function Preloader() {
       <div className="tags-overlay">
         {tags.map((tag, i) => (
           <div className={`tag tag-${i + 1}`} key={tag}>
-            <p className="micro">{tag}</p>
+            <p>{tag}</p>
           </div>
         ))}
       </div>

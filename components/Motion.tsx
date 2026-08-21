@@ -97,7 +97,13 @@ export default function Motion() {
     lenis.on("scroll", ScrollTrigger.update);
 
     if (process.env.NODE_ENV === "development") {
-      (window as unknown as { lenis?: Lenis }).lenis = lenis;
+      // Handle de desarrollo: sirve para saltar a una sección sin pelearse con
+      // el scroll suave, y para refrescar los pins después de tocar CSS.
+      (window as unknown as { dev?: Record<string, unknown> }).dev = {
+        lenis,
+        gsap,
+        ScrollTrigger,
+      };
     }
     const tick = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tick);

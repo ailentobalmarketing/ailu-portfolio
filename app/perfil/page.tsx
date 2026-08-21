@@ -1,4 +1,3 @@
-import Script from "next/script";
 import type { Metadata } from "next";
 import StudioHero from "@/components/StudioHero";
 import Steps from "@/components/Steps";
@@ -98,15 +97,6 @@ export default function Perfil() {
               )}
             </div>
           ))}
-        </div>
-
-        <div className="particle-canvas">
-          <canvas id="particle-canvas" />
-          <div className="particle-header">
-            <h1 data-animate-variant="slide" data-animate-on-scroll="true">
-              {titulares.particula}
-            </h1>
-          </div>
         </div>
       </section>
 
@@ -211,8 +201,6 @@ export default function Perfil() {
       </section>
 
       <Contacto />
-      <Script src="/js/simulation.js" strategy="afterInteractive" />
-      <Script src="/js/particle-visual.js" strategy="afterInteractive" />
     </>
   );
 }

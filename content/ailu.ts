@@ -298,7 +298,6 @@ export const titulares = {
   perfilHero: ["Menos", "Ruido"],
   perfilFooterIzq: [],
   perfilFooterDer: "Perfil 2026",
-  particula: "Contenido que rinde",
   pasosDesktop: "Cómo trabajo",
   pasosMobile: "Cómo trabajo",
   marcasTitulo: "Marcas con las que trabajé",

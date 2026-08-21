@@ -137,16 +137,19 @@ nav {
   overflow: hidden;
 }
 
+/* Fijo y centrado. Antes era `width: max-content` anclado a la izquierda y se
+   paneaba con el cursor, porque con los links a 20rem no entraban en pantalla.
+   Con la escala actual entran: el bloque queda quieto y sin desborde. */
 .menu-overlay .menu-links-wrapper {
   position: absolute;
   left: 0;
   bottom: 0;
   display: flex;
-  justify-content: space-between;
-  gap: 2rem;
-  width: max-content;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+  width: 100%;
   padding: 2rem;
-  will-change: transform;
 }
 
 .menu-overlay .menu-link {

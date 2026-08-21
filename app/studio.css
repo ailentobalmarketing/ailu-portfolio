@@ -94,13 +94,19 @@
   gap: 5rem;
 }
 
+/* El cierre del panel lo daba la sección de partículas, que se sacó: ahora el
+   aire de abajo lo pone el propio bloque. */
 .about {
   position: relative;
   width: 100%;
   height: 100%;
-  padding-top: 2.5rem;
+  padding: 6rem 0 8rem;
   background-color: var(--d);
   color: var(--l);
+}
+
+.about .about-row + .about-row {
+  margin-top: clamp(3rem, 7vh, 6rem);
 }
 
 .about .container {
@@ -129,35 +135,6 @@
 .about .about-row .about-col.about-col-copy p {
   width: 75%;
   text-align: center;
-}
-
-.particle-canvas {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100svh;
-  overflow: hidden;
-}
-
-.particle-canvas #particle-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100svh;
-}
-
-.particle-canvas h1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  z-index: 10;
-  width: 100%;
-  text-align: center;
-  transform: translate(-50%, -50%);
 }
 
 .sticky {

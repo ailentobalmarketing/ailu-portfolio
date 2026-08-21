@@ -1,0 +1,257 @@
+@import "tailwindcss";
+
+/* ============================================================
+   CLAVES FIJAS — acá se cambian colores, escala y ritmo.
+   Todo el sitio referencia estas variables, nada hardcodeado.
+   Sistema heredado del portfolio de Arturo Marinho, llevado a
+   blanco y negro puro y a DM Sans.
+   ============================================================ */
+:root {
+  /* ---- Color: blanco y negro, sin temperatura ---- */
+  --ink: #0a0a0a; /* casi-negro: texto y fondos oscuros */
+  --paper: #ffffff; /* blanco: fondo base */
+  --paper-soft: #f4f4f4; /* gris apenas, para bloques */
+  --muted: #8a8a8a; /* texto secundario */
+  --line: #e4e4e4; /* hairlines y separadores */
+
+  /* ---- Fuente: DM Sans para todo (se carga en el layout) ---- */
+  --font-display: var(--font-dm), system-ui, sans-serif;
+  --font-body: var(--font-dm), system-ui, sans-serif;
+
+  /* ---- Escala tipográfica fluida ---- */
+  --step--1: clamp(0.78rem, 0.74rem + 0.2vw, 0.88rem);
+  --step-0: clamp(0.95rem, 0.9rem + 0.25vw, 1.05rem);
+  --step-1: clamp(1.15rem, 1rem + 0.7vw, 1.55rem);
+  --step-2: clamp(1.6rem, 1.25rem + 1.6vw, 2.6rem);
+  --step-3: clamp(2.1rem, 1.5rem + 3vw, 4rem);
+
+  /* ---- Ritmo espacial ---- */
+  --gutter: clamp(1.25rem, 0.75rem + 2.5vw, 3.5rem);
+  --section-y: clamp(4rem, 2.5rem + 7vw, 9rem);
+  /* Más angosto que el de Arturo a propósito: acá manda el texto, y una medida
+     de lectura corta es la mitad del trabajo de que se vea limpio. */
+  --maxw: 84rem;
+  --measure: 34rem; /* ancho máximo de un párrafo */
+
+  /* ---- Movimiento ---- */
+  --ease: cubic-bezier(0.83, 0, 0.17, 1); /* obturador: arranca y frena seco */
+  --ease-soft: cubic-bezier(
+    0.33,
+    1,
+    0.68,
+    1
+  ); /* deriva: sale suave y se posa */
+  --dur: 0.5s;
+}
+
+/* Mapear claves → utilidades Tailwind */
+@theme inline {
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-soft: var(--paper-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+
+  --text-step--1: var(--step--1);
+  --text-step-0: var(--step-0);
+  --text-step-1: var(--step-1);
+  --text-step-2: var(--step-2);
+  --text-step-3: var(--step-3);
+}
+
+/* ============================================================
+   BASE — lienzo limpio.
+   El reset va en @layer base: sin capa, estas reglas de elemento le ganan a
+   las utilidades de Tailwind sin importar especificidad y matan `mt-*` sobre
+   <p>/<h*> o los colores sobre <a>.
+   ============================================================ */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: var(--step-0);
+    line-height: 1.6;
+    overflow-x: hidden;
+    overscroll-behavior-y: none;
+  }
+
+  a,
+  button,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: var(--ink);
+    color: var(--paper);
+  }
+}
+
+/* ============================================================
+   UTILIDADES DE LAYOUT — una sola fuente de verdad
+   ============================================================ */
+@layer components {
+  .u-shell {
+    width: 100%;
+    max-width: var(--maxw);
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  /* Rótulo chico en versalitas: lo único que rompe la caja baja en todo el sitio. */
+  .u-eyebrow {
+    font-size: var(--step--1);
+    font-weight: 400;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* Medida de lectura. Sin esto los párrafos se estiran a 84rem y no se leen. */
+  .u-measure {
+    max-width: var(--measure);
+  }
+
+  /* Subrayado que crece de izquierda a derecha al pasar por encima. */
+  .u-link {
+    position: relative;
+    display: inline-block;
+  }
+  .u-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -0.15em;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.45s var(--ease-soft);
+  }
+  .u-link:hover::after {
+    transform: scaleX(1);
+  }
+}
+
+/* ============================================================
+   REVEAL — entrada de bloques cuando aparecen en pantalla.
+   Lo dispara Reveal.tsx con un IntersectionObserver: sin librería de scroll
+   y sin ScrollTrigger para una sola animación.
+
+   Va con `transition` y NO con `animation` a propósito. Con animation, el
+   estado visible depende de que la animación corra: si no corre —sin JS, o con
+   la pestaña en segundo plano, donde el navegador las pausa— el contenido
+   queda en opacity 0 y la página se ve vacía. Con transition el estado natural
+   es el visible, y lo escondido es la excepción que aplica sólo mientras
+   está el atributo.
+   ============================================================ */
+.reveal {
+  transition:
+    opacity 0.7s var(--ease-soft),
+    transform 0.7s var(--ease-soft);
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+/* `scripting: enabled` es la forma de CSS puro de preguntar si hay JS: sin él
+   la regla no aplica y el contenido se ve, sin script inline ni flags en <html>
+   (que además rompían la hidratación). */
+@media (scripting: enabled) {
+  .reveal:not([data-shown="true"]) {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal:not([data-shown="true"]) {
+    opacity: 1;
+    transform: none;
+  }
+  .reveal {
+    transition: none;
+  }
+}
+
+/* ============================================================
+   TRANSICIÓN ENTRE PÁGINAS — View Transitions API, la dispara
+   PageTransition.tsx. La página nueva se revela desde el centro por encima
+   de la vieja, que se difumina. Scopeado con html[data-vt="page"].
+   `mix-blend-mode: normal` es imprescindible: sin eso la capa de arriba se
+   SUMA a la de abajo (plus-lighter por defecto) y quema el blanco.
+   ============================================================ */
+html[data-vt="page"]::view-transition-old(root) {
+  animation: page-out 0.7s var(--ease) both;
+  mix-blend-mode: normal;
+}
+
+html[data-vt="page"]::view-transition-new(root) {
+  animation: page-reveal 0.7s var(--ease) both;
+  mix-blend-mode: normal;
+}
+
+@keyframes page-out {
+  from {
+    filter: blur(0);
+    scale: 1;
+  }
+  to {
+    filter: blur(8px);
+    scale: 1.2;
+  }
+}
+
+@keyframes page-reveal {
+  from {
+    opacity: 0.7;
+    scale: 0.9;
+    clip-path: inset(50% 50% 50% 50%);
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* La nav queda quieta y nítida durante la transición: su propio group. */
+.site-nav {
+  view-transition-name: site-nav;
+}

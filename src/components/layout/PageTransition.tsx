@@ -12,8 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 /**
  * Transición entre páginas con la View Transitions API. Al clickear un link el
  * navegador saca una foto de la página actual (X), navegamos, y la nueva (Y) se
- * revela con un rectángulo que crece desde el centro por encima de X, que se
- * difumina. Las dos conviven como snapshots durante la transición: eso es lo
+ * destapa de arriba hacia abajo por encima de X, que se difumina. Las dos conviven como snapshots durante la transición: eso es lo
  * que la VT resuelve gratis — con navegación normal X se desmonta y no se
  * podría mostrar por afuera.
  *

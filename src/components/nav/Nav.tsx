@@ -122,7 +122,7 @@ export default function Nav() {
             "absolute inset-0 bg-paper [transition:clip-path_0.55s_var(--ease),visibility_0.55s] motion-reduce:transition-none",
             open
               ? "visible [clip-path:inset(0_0_0_0)]"
-              : "invisible [clip-path:inset(50%_50%_50%_50%)]",
+              : "invisible [clip-path:inset(0_0_100%_0)]",
           )}
         >
           <nav

@@ -15,7 +15,11 @@ import { proyectos } from "@/data/work";
  * clásica el snap directamente no existiría.
  *
  * El movimiento automático avanza `scrollLeft` por frame y cede apenas el
- * usuario toca: ahí manda él y el snap engancha.
+ * usuario arrastra o scrollea en horizontal. El hover no lo detiene.
+ *
+ * Mobile primero: ahí el riel es táctil y el snap ancla cada foto al soltar.
+ * En desktop no hay snap — con mouse trababa la cinta y obligaba a moverla a
+ * mano, que era justo lo que no se quería.
  */
 
 const VELOCIDAD = 0.4; // px por frame ≈ 24 px/s
@@ -108,8 +112,18 @@ export default function WorkMarquee({ className }: { className?: string }) {
      * Mientras el usuario manda, el automático no se mete. El snap sólo se
      * activa en esa ventana (`data-libre`): con snap mandatory siempre puesto,
      * el scroll automático queda trabado contra el punto de anclaje y no avanza.
+     *
+     * El hover NO cede: en desktop trababa la cinta y obligaba a scrollear a
+     * mano. A 24 px/s se puede clickear una foto en movimiento sin problema.
      */
-    const ceder = () => {
+    const ceder = (e: Event) => {
+      // Un wheel vertical sobre la cinta es la página scrolleando por encima,
+      // no intención de mover el riel.
+      if (e.type === "wheel") {
+        const w = e as WheelEvent;
+        if (Math.abs(w.deltaX) <= Math.abs(w.deltaY)) return;
+      }
+
       pausaHasta = performance.now() + REANUDAR_MS;
       el.dataset.libre = "true";
       window.clearTimeout(soltar);
@@ -118,13 +132,7 @@ export default function WorkMarquee({ className }: { className?: string }) {
       }, REANUDAR_MS);
     };
 
-    const eventos = [
-      "pointerdown",
-      "wheel",
-      "touchstart",
-      "keydown",
-      "mouseenter",
-    ] as const;
+    const eventos = ["pointerdown", "wheel", "touchstart", "keydown"] as const;
     eventos.forEach((e) => el.addEventListener(e, ceder, { passive: true }));
 
     raf = requestAnimationFrame(paso);

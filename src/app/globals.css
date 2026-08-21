@@ -229,9 +229,22 @@
   display: none;
 }
 
+/* Mobile primero: el riel es táctil y anclar cada foto es el comportamiento
+   correcto. El snap se activa sólo mientras el usuario tiene el control
+   (`data-libre`, lo pone el componente): con snap mandatory siempre puesto, el
+   scroll automático queda trabado contra el punto de anclaje. */
 .marquee-rail[data-libre] {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
+}
+
+/* Desktop: sin snap. Con mouse no se arrastra igual que con el pulgar, y el
+   snap era justo lo que trababa el autoplay al pasar por encima. */
+@media (min-width: 48rem) {
+  .marquee-rail[data-libre] {
+    scroll-snap-type: none;
+    scroll-behavior: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -242,41 +255,39 @@
 
 /* ============================================================
    TRANSICIÓN ENTRE PÁGINAS — View Transitions API, la dispara
-   PageTransition.tsx. La página nueva se revela desde el centro por encima
-   de la vieja, que se difumina. Scopeado con html[data-vt="page"].
+   PageTransition.tsx. La página nueva se destapa de arriba hacia abajo, por
+   encima de la vieja, que se difumina. Scopeado con html[data-vt="page"].
    `mix-blend-mode: normal` es imprescindible: sin eso la capa de arriba se
    SUMA a la de abajo (plus-lighter por defecto) y quema el blanco.
+
+   Va en `linear` a propósito y no con --ease: con un ease-in-out fuerte el
+   borde del wipe cruza la pantalla en el medio de la animación y no se llega
+   a ver. A velocidad constante el barrido se lee de punta a punta.
    ============================================================ */
 html[data-vt="page"]::view-transition-old(root) {
-  animation: page-out 0.7s var(--ease) both;
+  animation: page-out 0.6s linear both;
   mix-blend-mode: normal;
 }
 
 html[data-vt="page"]::view-transition-new(root) {
-  animation: page-reveal 0.7s var(--ease) both;
+  animation: page-reveal 0.6s linear both;
   mix-blend-mode: normal;
 }
 
 @keyframes page-out {
   from {
     filter: blur(0);
-    scale: 1;
   }
   to {
     filter: blur(8px);
-    scale: 1.2;
   }
 }
 
 @keyframes page-reveal {
   from {
-    opacity: 0.7;
-    scale: 0.9;
-    clip-path: inset(50% 50% 50% 50%);
+    clip-path: inset(0 0 100% 0);
   }
   to {
-    opacity: 1;
-    scale: 1;
     clip-path: inset(0 0 0 0);
   }
 }

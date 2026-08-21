@@ -1,0 +1,131 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   nav + menú full-screen
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* por encima del menú, para que "Cerrar" siga siendo clickeable */
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 2.5rem;
+}
+
+.nav-name,
+.nav-toggle {
+  color: var(--mut);
+  text-decoration: none;
+  transition: color 0.4s ease;
+}
+
+.nav-toggle {
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.nav-name:hover,
+.nav-toggle:hover {
+  color: var(--d);
+}
+
+/* con el menú abierto el nav queda sobre fondo oscuro */
+.nav--on-dark .nav-name,
+.nav--on-dark .nav-toggle {
+  color: rgb(243 240 234 / 0.6);
+}
+
+.nav--on-dark .nav-name:hover,
+.nav--on-dark .nav-toggle:hover {
+  color: var(--l);
+}
+
+.menu {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: flex;
+  align-items: flex-end;
+  background-color: var(--d);
+  color: var(--l);
+  clip-path: inset(0 0 100% 0);
+}
+
+.menu-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: clamp(3rem, 8vh, 6rem);
+  height: 100%;
+  padding-top: 8rem;
+  padding-bottom: 3rem;
+}
+
+.menu-links {
+  margin-top: auto;
+  list-style: none;
+}
+
+.menu-link a {
+  display: block;
+  overflow: hidden;
+  text-decoration: none;
+}
+
+.menu-link-inner {
+  display: block;
+  font-family: var(--f-h);
+  font-size: clamp(3.5rem, 13vw, 13rem);
+  font-weight: 200;
+  line-height: 1.02;
+  color: var(--l);
+  transition: opacity 0.35s ease;
+  will-change: transform;
+}
+
+/* al pasar por uno, los otros se apagan */
+.menu-links:hover .menu-link-inner {
+  opacity: 0.3;
+}
+
+.menu-links .menu-link:hover .menu-link-inner {
+  opacity: 1;
+}
+
+.menu-foot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1.5rem 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgb(243 240 234 / 0.15);
+}
+
+.menu-meta .micro {
+  display: block;
+  margin-bottom: 0.375rem;
+  color: rgb(243 240 234 / 0.45);
+}
+
+.menu-meta a {
+  font-size: 0.9375rem;
+  color: var(--l);
+  text-decoration: none;
+  border-bottom: 1px solid rgb(243 240 234 / 0.25);
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease;
+}
+
+.menu-meta a:hover {
+  border-bottom-color: var(--l);
+}
+
+@media (max-width: 900px) {
+  .nav {
+    padding: 1.5rem 2rem;
+  }
+}

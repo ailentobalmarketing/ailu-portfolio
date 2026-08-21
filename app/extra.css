@@ -1,3 +1,15 @@
+/* ── pie del hero ─────────────────────────────────────────────────────────────
+   Las micro-etiquetas de las esquinas son flex items y SplitText les fija un
+   ancho al partirlas en líneas: quedaban comprimidas a ~97px y partidas en 2 y
+   3 renglones aunque sobrara casi todo el ancho de la pantalla. Nunca tienen
+   que partirse.
+   ──────────────────────────────────────────────────────────────────────────── */
+
+.hero-footer-col p {
+  flex: 0 0 auto;
+  white-space: nowrap;
+}
+
 /* ─────────────────────────────────────────────────────────────────────────────
    extra — lo que el brief de Ailu necesita y Lemon Bureau no tenía.
    Escrito en el mismo idioma que el resto: Humane grande, mono en las

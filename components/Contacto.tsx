@@ -26,9 +26,6 @@ export default function Contacto() {
             </a>
           </div>
         </div>
-        <div className="footer-bottom">
-          <p className="footer-logo">{perfil.nombre} — 2026</p>
-        </div>
       </div>
     </footer>
   );

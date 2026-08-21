@@ -145,6 +145,10 @@
   background-color: var(--l);
 }
 
+/* El ancho era 290vw fijo, calculado para "Meet The Obsessives" a 50vw. Con un
+   titular más corto y más chico sobraban ~2900px de vacío que igual había que
+   scrollear. Ahora mide lo que mide el texto más un margen a cada lado, así
+   panea de verdad sin desierto. */
 .sticky-header {
   position: relative;
   top: 0;
@@ -152,7 +156,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 290vw;
+  width: max-content;
+  padding: 0 22vw;
   height: 100svh;
   will-change: transform;
 }

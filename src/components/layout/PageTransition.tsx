@@ -83,6 +83,21 @@ export default function PageTransition({ children }: { children: ReactNode }) {
     [pathname, router],
   );
 
+  /**
+   * La barra de Safari aparece y desaparece sola con el scroll, y cada vez
+   * cambia el alto útil sin disparar un `resize` de window — sólo se entera
+   * `visualViewport`. Sin esto, las medidas de Lenis quedan viejas y vuelve la
+   * banda blanca al final. Va acá porque este componente está adentro de Lenis
+   * y montado en todas las páginas.
+   */
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv || !lenis) return;
+    const alCambiar = () => lenis.resize();
+    vv.addEventListener("resize", alCambiar);
+    return () => vv.removeEventListener("resize", alCambiar);
+  }, [lenis]);
+
   useEffect(() => {
     if (pending.current && pathname === pending.current) {
       /**

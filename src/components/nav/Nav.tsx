@@ -39,6 +39,19 @@ export default function Nav() {
      * `overflow` queda de respaldo para cuando NO hay Lenis — el caso de
      * reduced-motion, ver SmoothScroll.
      */
+    /**
+     * Con el menú abierto, la página se esconde entera.
+     *
+     * El panel es `fixed inset-0`, y en iOS eso NO cubre la franja de la barra
+     * de Safari: la página se extiende a pantalla completa por `viewport-fit`,
+     * pero el viewport que usa `position: fixed` excluye la barra mientras está
+     * desplegada. Probado con `lvh` y con 8rem de sobra: Safari recorta el panel
+     * igual. Así que en vez de agrandar la tapa, se saca lo que hay debajo.
+     *
+     * `visibility` y no `display`: no reflowea, no mueve el scroll y vuelve sin
+     * costo. La nav queda visible porque es la que tiene el botón de cerrar.
+     */
+    document.documentElement.dataset.menu = "abierto";
     lenis?.stop();
     const previo = document.body.style.overflow;
     if (!lenis) document.body.style.overflow = "hidden";
@@ -53,7 +66,16 @@ export default function Nav() {
     window.addEventListener("keydown", onKey);
 
     return () => {
+      delete document.documentElement.dataset.menu;
       lenis?.start();
+      /**
+       * Y recalcular las dimensiones. Al abrir el menú, Safari expande su barra
+       * inferior y el viewport se achica; Lenis cachea el alto en ese momento y
+       * al cerrar se queda con un límite de scroll más largo que la página. Te
+       * deja pasar el final y ahí asoma el blanco del canvas debajo del footer,
+       * que es negro. El frame de espera es para medir con la barra ya quieta.
+       */
+      requestAnimationFrame(() => lenis?.resize());
       document.body.style.overflow = previo;
       window.removeEventListener("keydown", onKey);
     };

@@ -36,6 +36,21 @@ export default function Reveal({
     const el = ref.current;
     if (!el) return;
 
+    /**
+     * Si el bloque nace en medio de una transición de página y ya está a la
+     * vista, se muestra de una: el wipe es su entrada. Animarlo además haría
+     * que el navegador lo fotografíe a mitad de camino y que el contenido
+     * salte al terminar la transición. Lo que está abajo del pliegue sigue
+     * entrando con el scroll, como siempre.
+     */
+    if (document.documentElement.dataset.vt === "page") {
+      const caja = el.getBoundingClientRect();
+      if (caja.top < window.innerHeight) {
+        el.dataset.shown = "true";
+        return;
+      }
+    }
+
     let timer: number;
 
     const mostrar = () => {

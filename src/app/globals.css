@@ -76,6 +76,11 @@
   html {
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
+    /* Acá y NO en body: `overscroll-behavior` no se propaga al viewport como
+       sí lo hace el background, así que puesto en body no frena nada. En body
+       estuvo sin efecto y por eso iOS rebotaba al final de la página: detrás
+       del footer, que es negro, asomaba el blanco del canvas. */
+    overscroll-behavior-y: none;
   }
 
   body {
@@ -86,8 +91,12 @@
     font-weight: 400;
     font-size: var(--step-0);
     line-height: 1.6;
-    overflow-x: hidden;
-    overscroll-behavior-y: none;
+    /* `clip` y NO `hidden`: `overflow-x: hidden` obliga al navegador a computar
+       `overflow-y: auto`, y eso convierte al body en un contenedor de scroll
+       aparte del html. Con dos scrollers anidados, iOS deja una banda blanca
+       al final de la página — el famoso rectángulo abajo del footer. `clip`
+       recorta igual pero no crea scroller. */
+    overflow-x: clip;
   }
 
   a,
@@ -198,6 +207,14 @@
     opacity: 0;
     transform: translateY(16px);
   }
+}
+
+/* Durante una transición de página el wipe YA es la entrada. Si además cada
+   bloque hace su movimiento de 16px, el navegador lo fotografía al principio
+   del recorrido y al terminar el wipe el contenido pega un tirón hacia arriba.
+   Acá se apaga la transición y Reveal.tsx los da por mostrados de una. */
+html[data-vt="page"] .reveal {
+  transition: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -354,4 +371,22 @@ main :is(h1, h2, h3, p, dl, .u-eyebrow) {
    cambia, y el día que cambie este selector deja de matchear en silencio. */
 .marquee-rail .u-eyebrow {
   mix-blend-mode: normal;
+}
+
+/* Con el menú mobile abierto no queda nada de la página que pueda asomar por
+   los bordes que el panel no llega a cubrir (la franja de la barra de Safari).
+   Se esconde el contenido, no el header: ahí vive el botón de cerrar. */
+html[data-menu="abierto"] main,
+html[data-menu="abierto"] footer,
+html[data-menu="abierto"] .site-backdrop {
+  visibility: hidden;
+  /* El retardo es lo que salva la animación: el panel tarda 0.55s en bajar, y
+     si la página se esconde en el frame 0 el barrido no se ve — aparece el
+     blanco de golpe. Con el delay, la página sigue ahí mientras el panel la
+     va tapando, y recién al final se esconde lo que quedó abajo de la barra
+     de Safari, que es lo único que el panel no llega a cubrir.
+
+     Al cerrar no hay retardo: sin la marca en <html> esta regla no aplica y
+     la página vuelve al instante, mientras el panel sube. */
+  transition: visibility 0s linear 0.55s;
 }

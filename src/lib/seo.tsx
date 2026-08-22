@@ -92,16 +92,15 @@ export function personJsonLd() {
   };
 }
 
-/** Caso de proyecto. Se emite en cada /works/[slug]. */
+/** Caso de proyecto. Se emite en cada /trabajos/[slug]. */
 export function proyectoJsonLd(p: Proyecto) {
   return {
     "@context": "https://schema.org",
     "@type": "CreativeWork",
-    "@id": `${site.url}/works/${p.slug}`,
+    "@id": `${site.url}/trabajos/${p.slug}`,
     name: p.nombre,
     headline: p.resumen,
     description: p.texto.join(" "),
-    dateCreated: p.anio,
     inLanguage: "es-AR",
     // ⚠️ Mientras sean proyectos de prueba, `creator` sería una afirmación
     // falsa sobre trabajo real. Se completa al poner los proyectos verdaderos.
@@ -122,14 +121,14 @@ export function breadcrumbJsonLd(p: Proyecto) {
       {
         "@type": "ListItem",
         position: 2,
-        name: "Works",
-        item: `${site.url}/works`,
+        name: "Trabajos",
+        item: `${site.url}/trabajos`,
       },
       {
         "@type": "ListItem",
         position: 3,
         name: p.nombre,
-        item: `${site.url}/works/${p.slug}`,
+        item: `${site.url}/trabajos/${p.slug}`,
       },
     ],
   };

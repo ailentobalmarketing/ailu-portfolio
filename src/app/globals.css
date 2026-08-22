@@ -276,10 +276,10 @@ html[data-vt="page"]::view-transition-new(root) {
 
 @keyframes page-out {
   from {
-    filter: blur(0);
+    opacity: 1;
   }
   to {
-    filter: blur(8px);
+    opacity: 0.5;
   }
 }
 
@@ -295,4 +295,63 @@ html[data-vt="page"]::view-transition-new(root) {
 /* La nav queda quieta y nítida durante la transición: su propio group. */
 .site-nav {
   view-transition-name: site-nav;
+}
+
+/* ============================================================
+   FONDO LÍQUIDO — LiquidEther montado en el layout (SiteBackdrop.tsx).
+   El canvas se dibuja con fondo transparente: el blanco del body queda de
+   piso y el fluido pinta encima, que es justo lo que queremos.
+   Acá sólo va el apagado: con reduced-motion el contenedor deja de
+   intersecar y el propio componente pausa el rAF, sin GPU girando al pedo.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .site-backdrop {
+    display: none;
+  }
+}
+
+/* ============================================================
+   MEZCLA CON EL FONDO — el fluido pasa por detrás de todo, así que el texto
+   va en `multiply`: negro por cualquier cosa sigue siendo negro y nunca se
+   aclara contra el rojo.
+
+   `difference` sería el error clásico acá: sobre un fondo claro convierte el
+   negro en blanco y el texto desaparece justo donde había que salvarlo.
+
+   Dos exclusiones a propósito:
+   · Las imágenes. Son el trabajo de Ailu — se muestran como son, sin teñir.
+   · El texto blanco de la cinta. En multiply el blanco se come el fondo y el
+     rótulo del hover quedaría invisible.
+   ============================================================ */
+main :is(h1, h2, h3, p, dl, .u-eyebrow) {
+  mix-blend-mode: multiply;
+}
+
+/* ============================================================
+   LA NAV VA EN `difference` — desktop y mobile.
+   Es el único modo que garantiza que el texto NUNCA se pierda: invierte lo que
+   tenga detrás, sea el papel blanco, el rojo del fluido o una foto. No hay
+   color de fondo que lo pueda tapar.
+
+   El precio, y es la parte que hay que respetar: `difference` INVIERTE el
+   color, así que el color fuente se declara al revés. Por eso el texto de la
+   nav es BLANCO en el código — sobre el papel se ve negro. Si lo dejáramos
+   negro, sobre blanco daría blanco y desaparecería, que es justo lo que se
+   quiere evitar. Lo mismo con el gris de la página actual: #757575 invertido
+   da #8a8a8a, que es el gris del sistema.
+
+   Va sobre el header como grupo y no sobre cada texto: el header es `z-50`,
+   o sea un contexto de apilado, y eso aísla el blending de lo que tiene
+   adentro. Puesto en los hijos se mezclaría contra el grupo vacío del header
+   y nunca llegaría al fondo. Como grupo, entra todo su texto sí o sí.
+   ============================================================ */
+.site-nav,
+#menu-mobile :is(a, span) {
+  mix-blend-mode: difference;
+}
+
+/* Se engancha a la clase del riel y no al aria-label: ese texto es copy y
+   cambia, y el día que cambie este selector deja de matchear en silencio. */
+.marquee-rail .u-eyebrow {
+  mix-blend-mode: normal;
 }

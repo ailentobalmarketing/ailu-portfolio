@@ -26,17 +26,33 @@ const VELOCIDAD = 0.4; // px por frame ≈ 24 px/s
 /** Tras soltar, cuánto espera antes de retomar el movimiento solo. */
 const REANUDAR_MS = 2500;
 
-const slides = proyectos.flatMap((p) =>
-  p.fotos.map((f, i) => ({
-    key: `${p.slug}-${i}`,
-    src: f.src,
-    w: f.w,
-    h: f.h,
-    alt: f.alt ?? `${p.nombre} — ${p.rubro}`,
-    slug: p.slug,
-    nombre: p.nombre,
-  })),
-);
+/**
+ * Las fotos van intercaladas entre proyectos, no agrupadas por marca: en orden
+ * de archivo la cinta arrancaba con las ocho de Batistella seguidas.
+ *
+ * Cada foto recibe una posición relativa DENTRO de su proyecto —la tercera de
+ * cinco vale 0.5— y después se ordena todo por esa posición. Un proyecto con
+ * ocho fotos se reparte a lo largo de toda la cinta igual que uno con tres, así
+ * que no quedan dos de la misma marca pegadas ni una tanda al final.
+ *
+ * Es determinista a propósito, NO `Math.random()`: este componente se renderiza
+ * en el servidor y también en el cliente, y dos órdenes distintos rompen la
+ * hidratación. Se ve mezclado y es siempre el mismo orden.
+ */
+const slides = proyectos
+  .flatMap((p) =>
+    p.fotos.map((f, i) => ({
+      key: `${p.slug}-${i}`,
+      src: f.src,
+      w: f.w,
+      h: f.h,
+      alt: f.alt ?? `${p.nombre} — ${p.rubro}`,
+      slug: p.slug,
+      nombre: p.nombre,
+      pos: (i + 0.5) / p.fotos.length,
+    })),
+  )
+  .sort((a, b) => a.pos - b.pos);
 
 function Tira({ copia = false }: { copia?: boolean }) {
   return (
@@ -50,7 +66,7 @@ function Tira({ copia = false }: { copia?: boolean }) {
           aria-hidden={copia || undefined}
         >
           <TransitionLink
-            href={`/works/${s.slug}`}
+            href={`/trabajos/${s.slug}`}
             tabIndex={copia ? -1 : undefined}
             className="group relative block h-full"
           >
@@ -78,6 +94,9 @@ function Tira({ copia = false }: { copia?: boolean }) {
 
 export default function WorkMarquee({ className }: { className?: string }) {
   const ref = useRef<HTMLUListElement>(null);
+
+  // Sin fotos no hay cinta: si no, queda una banda vacía con su margen.
+  const vacia = slides.length === 0;
 
   useEffect(() => {
     const el = ref.current;
@@ -144,8 +163,10 @@ export default function WorkMarquee({ className }: { className?: string }) {
     };
   }, []);
 
+  if (vacia) return null;
+
   return (
-    <div className={className} aria-label="Trabajos">
+    <div className={className} aria-label="Últimos trabajos">
       <ul
         ref={ref}
         className="marquee-rail flex gap-2 overflow-x-auto overscroll-x-contain"

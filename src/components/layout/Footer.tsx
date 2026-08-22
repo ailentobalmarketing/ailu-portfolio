@@ -35,6 +35,18 @@ export default function Footer() {
           <p className="mt-4 text-[length:var(--step--1)] text-paper/50">
             © {new Date().getFullYear()} {site.nombre}
           </p>
+          {/* Firma del estudio, igual que en trafull.com. Va `noopener` y NO
+              `noreferrer` como los otros links de acá: es el único que interesa
+              que llegue a rstudios.ar con el referrer puesto, para que el
+              tráfico se pueda atribuir. */}
+          <a
+            href="https://rstudios.ar"
+            target="_blank"
+            rel="noopener"
+            className="u-link text-[length:var(--step--1)] text-paper/50 transition-colors duration-500 ease-[var(--ease-soft)] hover:text-paper"
+          >
+            Hecho con ❤️ por R Studios
+          </a>
         </div>
       </div>
     </footer>

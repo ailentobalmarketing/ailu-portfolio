@@ -9,12 +9,12 @@ import { proyectos } from "@/data/work";
 export default function sitemap(): MetadataRoute.Sitemap {
   const fijas = [
     { url: site.url, priority: 1 },
-    { url: `${site.url}/works`, priority: 0.8 },
+    { url: `${site.url}/trabajos`, priority: 0.8 },
     { url: `${site.url}/contacto`, priority: 0.5 },
   ];
 
   const casos = proyectos.map((p) => ({
-    url: `${site.url}/works/${p.slug}`,
+    url: `${site.url}/trabajos/${p.slug}`,
     priority: 0.6,
   }));
 

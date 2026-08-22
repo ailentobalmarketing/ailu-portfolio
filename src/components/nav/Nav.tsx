@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 const MD = "(min-width: 48rem)"; // breakpoint md de Tailwind
 
 /**
- * Banda blanca sticky. Izquierda: nombre completo + rol chico debajo (sin
+ * Banda sticky sin fondo. Izquierda: nombre completo + rol chico debajo (sin
  * logo). Derecha: los tres links. En mobile, un botón que abre el overlay.
  */
 export default function Nav() {
@@ -49,17 +49,17 @@ export default function Nav() {
 
   return (
     <>
-      <header className="site-nav sticky top-0 z-50 bg-paper text-ink">
+      <header className="site-nav sticky top-0 z-50 text-paper">
         <div className="u-shell flex items-start justify-between gap-5 py-6">
           <TransitionLink
             href="/"
             onClick={() => setOpen(false)}
             className="block leading-none transition-opacity duration-500 ease-[var(--ease-soft)] hover:opacity-60"
           >
-            <span className="block text-step-1 tracking-[-0.02em]">
+            <span className="block text-step-1 tracking-[-0.02em] mix-blend-difference">
               {site.nombre}
             </span>
-            <span className="mt-1.5 block text-[length:var(--step--1)] text-muted">
+            <span className="mt-1.5 block text-[length:var(--step--1)] mix-blend-difference">
               {site.rol}
             </span>
           </TransitionLink>
@@ -69,9 +69,15 @@ export default function Nav() {
               <TransitionLink
                 key={l.href}
                 href={l.href}
+                // La página donde ya estás no es un destino: se apaga a gris.
+                // El estado también va en aria-current y no sólo en el color:
+                // el gris tiene MENOS contraste que el negro, así que por sí
+                // solo no alcanza para marcar dónde estás.
+                aria-current={pathname === l.href ? "page" : undefined}
                 className={cn(
-                  "u-eyebrow transition-opacity duration-500 ease-[var(--ease-soft)] hover:opacity-60",
-                  pathname === l.href && "text-ink",
+                  "u-eyebrow text-paper transition-opacity duration-500 ease-[var(--ease-soft)] hover:opacity-60",
+                  // #757575 invertido da #8a8a8a, el gris del sistema.
+                  pathname === l.href && "text-[#757575]",
                 )}
               >
                 {l.label}
@@ -88,7 +94,7 @@ export default function Nav() {
             aria-expanded={open}
             aria-controls="menu-mobile"
             aria-label={open ? "Cerrar menú" : "Abrir menú"}
-            className="u-eyebrow relative pt-1 text-ink after:absolute after:-inset-x-2 after:top-1/2 after:h-11 after:-translate-y-1/2 md:hidden"
+            className="u-eyebrow relative pt-1 text-paper after:absolute after:-inset-x-2 after:top-1/2 after:h-11 after:-translate-y-1/2 md:hidden"
           >
             <span aria-hidden className="grid overflow-hidden leading-none">
               <span
@@ -127,7 +133,7 @@ export default function Nav() {
         >
           <nav
             ref={overlay}
-            className="u-shell flex h-full flex-col justify-end gap-6 pb-[calc(env(safe-area-inset-bottom)+3rem)]"
+            className="u-shell flex h-full flex-col justify-end gap-6 pb-[calc(env(safe-area-inset-bottom)+3rem)] text-paper"
           >
             {nav.map((l) => (
               <TransitionLink

@@ -3,6 +3,7 @@ import { DM_Sans } from "next/font/google";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/layout/PageTransition";
+import SiteBackdrop from "@/components/fx/SiteBackdrop";
 import SmoothScroll from "@/components/layout/SmoothScroll";
 import { site } from "@/data/site";
 import { JsonLd, personJsonLd, robotsMeta } from "@/lib/seo";
@@ -47,6 +48,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="es" className={dm.variable}>
       <body>
         <JsonLd data={personJsonLd()} />
+        <SiteBackdrop />
         <SmoothScroll>
           <PageTransition>
             <Nav />

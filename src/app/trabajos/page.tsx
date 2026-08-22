@@ -4,18 +4,18 @@ import { hayDemo, proyectos } from "@/data/work";
 import { meta } from "@/lib/seo";
 
 export const metadata = meta({
-  title: "Works",
+  title: "Trabajos",
   description:
     "Proyectos de contenido, pauta y gestión de redes para marcas de gastronomía, indumentaria, bienestar y comercio local.",
-  path: "/works",
+  path: "/trabajos",
 });
 
 /** Grilla de proyectos. Dos columnas en desktop, una en mobile. */
-export default function Works() {
+export default function Trabajos() {
   return (
     <section className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
       <Reveal as="h1" className="text-step-3">
-        Works
+        Últimos trabajos
       </Reveal>
 
       {hayDemo && (

@@ -48,7 +48,7 @@ export const INDEXABLE = false;
 
 export const nav = [
   { href: "/", label: "Bio" },
-  { href: "/works", label: "Works" },
+  { href: "/trabajos", label: "Trabajos" },
   { href: "/contacto", label: "Contacto" },
 ] as const;
 

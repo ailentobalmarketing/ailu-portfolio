@@ -34,17 +34,17 @@ export const site = {
 } as const;
 
 /**
- * 🔴 INTERRUPTOR ÚNICO DE INDEXACIÓN.
+ * INTERRUPTOR ÚNICO DE INDEXACIÓN.
  *
- * Mientras haya proyectos de prueba (`src/data/work.ts`), el sitio no tiene que
- * aparecer en buscadores: son marcas inventadas y se leerían como trabajo real
- * de Ailu. Toda la capa de SEO está construida y lista; sólo espera que esto
- * pase a `true`.
+ * ✅ Abierto desde el 2026-08-21: entraron los cinco proyectos reales de Ailu y
+ * el sitio salió a producción. Antes estuvo cerrado a propósito, mientras los
+ * trabajos eran marcas inventadas que se habrían leído como propios.
  *
- * Al poner los proyectos reales: cambiar acá y nada más — de esta constante
- * salen el robots.txt, el sitemap y el meta robots de todas las páginas.
+ * De esta constante salen el robots.txt, el sitemap y el meta robots de TODAS
+ * las páginas: si alguna vez hay que sacar el sitio del índice, se toca acá y
+ * nada más.
  */
-export const INDEXABLE = false;
+export const INDEXABLE = true;
 
 export const nav = [
   { href: "/", label: "Bio" },

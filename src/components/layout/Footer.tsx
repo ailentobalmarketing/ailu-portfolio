@@ -4,7 +4,7 @@ import { site } from "@/data/site";
 export default function Footer() {
   return (
     <footer className="mt-[var(--section-y)] bg-ink text-paper">
-      <div className="u-shell flex flex-col gap-8 py-12 md:flex-row md:items-end md:justify-between">
+      <div className="u-shell flex flex-col gap-8 pt-12 pb-[calc(3rem+env(safe-area-inset-bottom))] md:flex-row md:items-end md:justify-between">
         <div className="flex flex-col gap-2">
           <span className="u-eyebrow text-paper/50">Escribime</span>
           <a

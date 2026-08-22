@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { INDEXABLE, formacion, site } from "@/data/site";
-import type { Proyecto } from "@/data/work";
+import { esVideo, type Proyecto } from "@/data/work";
 
 /**
  * Una sola fuente de verdad para la metadata de cada página. Evita que cada
@@ -107,7 +107,8 @@ export function proyectoJsonLd(p: Proyecto) {
     ...(p.demo ? {} : { creator: { "@id": `${site.url}/#persona` } }),
     about: p.rubro,
     keywords: p.servicios.join(", "),
-    image: p.fotos.map((f) => `${site.url}${f.src}`),
+    // Sólo fotos: `image` de schema.org no acepta un video.
+    image: p.piezas.filter((f) => !esVideo(f)).map((f) => `${site.url}${f.src}`),
   };
 }
 

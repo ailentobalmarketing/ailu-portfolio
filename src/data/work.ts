@@ -2,22 +2,34 @@
  * Los proyectos reales de Ailu. Texto suyo (agosto 2026), acomodado al modelo
  * sin reescribirle la voz.
  *
- * El modelo es a propósito CHICO: nombre, rubro, qué hizo y fotos. Sin año (no
+ * El modelo es a propósito CHICO: nombre, rubro, qué hizo y piezas. Sin año (no
  * aporta a este trabajo y envejece el portfolio solo) y sin
  * métricas: los números inventados eran lo más riesgoso de la versión anterior,
  * y si aparece uno real va adentro del texto, no en un campo aparte.
  *
- * ⚠️ FALTAN LAS FOTOS. Están en el Drive «PORTFOLIO 2026», una carpeta por
- * proyecto. Hasta que entren, `fotos` queda vacío: la grilla muestra un cartel
- * en lugar de la portada y la cinta de la home no se renderiza. El sitio sigue
- * con `noindex` (INDEXABLE en src/data/site.ts) — no tocarlo hasta que estén.
+ * Las piezas salen del Drive «PORTFOLIO 2026», una carpeta por proyecto. Las
+ * fotos van en WebP y los videos en H.264 a 720px de ancho, sin audio y con un
+ * poster: los originales pesaban 136 MB entre los cuatro.
+ *
+ * Los logos de los clientes NO se usan como piezas: son marcas de ellos, no
+ * diseño de Ailu, y en su tira de trabajos sugerirían autoría.
  *
  * `demo` quedó en el tipo aunque hoy no lo use nadie: es el interruptor que
  * omite `creator` del JSON-LD, para no firmar como propio un trabajo que no lo
  * es. Si algún día vuelve a entrar material de relleno, se marca con esto.
  */
 
-export type Foto = { src: string; w: number; h: number; alt?: string };
+export type Pieza = {
+  src: string;
+  w: number;
+  h: number;
+  alt?: string;
+  /** Sólo en video: el primer cuadro, para que no quede un hueco al cargar. */
+  poster?: string;
+};
+
+/** La extensión ES el tipo: no hace falta un campo aparte que se desincronice. */
+export const esVideo = (p: Pieza) => p.src.endsWith(".mp4");
 
 export type Proyecto = {
   slug: string;
@@ -28,8 +40,9 @@ export type Proyecto = {
   /** Uno o dos párrafos, no más. */
   texto: string[];
   servicios: string[];
-  /** La primera es la portada de la grilla y la imagen que sale al compartir. */
-  fotos: Foto[];
+  /** Fotos y videos mezclados, en el orden en que se muestran. La portada de
+      la grilla es la primera que NO sea video. */
+  piezas: Pieza[];
   demo?: boolean;
 };
 
@@ -50,54 +63,57 @@ export const proyectos: Proyecto[] = [
       "Campañas por temporada",
       "Piezas para punto de venta",
     ],
-    fotos: [
+    piezas: [
       {
         src: "/work/batistella-1.webp",
         w: 1080,
         h: 1350,
-        alt: "Pieza de la campaña de liquidación: un zapato de cuero marrón en la mano, con el 50% off",
+        alt: "Pieza de la cápsula Texanas: un par de botas texanas con flecos sobre tierra colorada",
       },
       {
         src: "/work/batistella-2.webp",
         w: 1080,
-        h: 1350,
-        alt: "Botas negras de cuero con el precio anterior tachado y el nuevo al lado",
+        h: 1920,
+        alt: "Pieza de la colección Chocolate: botas de cuero con chocolate derretido cayendo sobre la suela",
       },
       {
         src: "/work/batistella-3.webp",
         w: 1080,
         h: 1350,
-        alt: "Bota negra de cuero sostenida en la mano, con el título de la liquidación",
+        alt: "Pieza de la campaña de liquidación: un zapato de cuero marrón en la mano, con el 50% off",
       },
       {
         src: "/work/batistella-4.webp",
         w: 1080,
         h: 1350,
-        alt: "Pieza tipográfica de la campaña: 50% off y seis cuotas sin interés sobre fondo negro",
+        alt: "Pieza tipográfica de la liquidación: 50% off y seis cuotas sin interés sobre fondo negro",
       },
       {
         src: "/work/batistella-5.webp",
         w: 1080,
         h: 1920,
-        alt: "Historia de apertura de la campaña: buscá tu talle en liquidación",
-      },
-      {
-        src: "/work/batistella-6.webp",
-        w: 1080,
-        h: 1920,
         alt: "Historia de búsqueda por talle: botas suela para los talles 35 y 36",
       },
       {
-        src: "/work/batistella-7.webp",
-        w: 1080,
-        h: 1920,
-        alt: "Historia de búsqueda por talle: bota negra de plataforma para los talles 37 y 38",
+        src: "/work/batistella-v1.mp4",
+        w: 720,
+        h: 1280,
+        poster: "/work/batistella-v1-poster.webp",
+        alt: "Video vertical de campaña de Batistella",
       },
       {
-        src: "/work/batistella-8.webp",
-        w: 1080,
-        h: 1920,
-        alt: "Historia de búsqueda por talle: bota negra con hebillas y cadena para los talles 39 a 41",
+        src: "/work/batistella-v2.mp4",
+        w: 720,
+        h: 1280,
+        poster: "/work/batistella-v2-poster.webp",
+        alt: "Video animado de la campaña Crew de Batistella",
+      },
+      {
+        src: "/work/batistella-v3.mp4",
+        w: 720,
+        h: 1280,
+        poster: "/work/batistella-v3-poster.webp",
+        alt: "Video vertical de la campaña del Día del Padre de Batistella",
       },
     ],
   },
@@ -116,7 +132,7 @@ export const proyectos: Proyecto[] = [
       "Contenido para web",
       "Testeo de mensajes",
     ],
-    fotos: [
+    piezas: [
       {
         src: "/work/macboot-1.webp",
         w: 960,
@@ -141,6 +157,19 @@ export const proyectos: Proyecto[] = [
         h: 1080,
         alt: "Pieza de la tecnología Amphibious: la zapatilla impermeable en el agua y el barro",
       },
+      {
+        src: "/work/macboot-5.webp",
+        w: 934,
+        h: 1126,
+        alt: "Pieza sobre fondo verde: una bota negra de trekking con el título «Protección y resistencia»",
+      },
+      {
+        src: "/work/macboot-v1.mp4",
+        w: 720,
+        h: 1280,
+        poster: "/work/macboot-v1-poster.webp",
+        alt: "Video de campaña de Macboot",
+      },
     ],
   },
   {
@@ -154,7 +183,7 @@ export const proyectos: Proyecto[] = [
       "La solución fue correr el eje del fútbol a la argentinidad: celeste y blanco, el ritual del verano compartido, la previa, el aguante. Construir la asociación desde los códigos culturales que rodean al evento en vez de desde el evento en sí. El producto se lee, la marca no se expone.",
     ],
     servicios: ["Concepto de campaña", "Producción de contenido"],
-    fotos: [
+    piezas: [
       {
         src: "/work/havaianas-1.webp",
         w: 1620,
@@ -192,7 +221,7 @@ export const proyectos: Proyecto[] = [
       "El objetivo no era vender sesiones sino construir comunidad. El contenido acompaña la trayectoria del espacio y sostiene un vínculo real con la audiencia: mostrar el lugar, las prácticas y las personas detrás, con una identidad visual coherente que le da unidad a todo lo que la marca publica.",
     ],
     servicios: ["Identidad de marca", "Manual de uso", "Contenido orgánico"],
-    fotos: [
+    piezas: [
       {
         src: "/work/hum-1.webp",
         w: 1755,
@@ -217,12 +246,6 @@ export const proyectos: Proyecto[] = [
         h: 1334,
         alt: "La tarjeta personal de Hüm, verde y con el isotipo, apoyada sobre piedras blancas",
       },
-      {
-        src: "/work/hum-5.webp",
-        w: 1080,
-        h: 1350,
-        alt: "El logo de Hüm: un círculo pincelado en verde con una gota, y el nombre debajo",
-      },
     ],
   },
   {
@@ -236,7 +259,7 @@ export const proyectos: Proyecto[] = [
       "A partir de ese sistema produje las placas y piezas gráficas para redes, pensadas para que la marca pueda sostener una comunicación consistente en el tiempo sin depender de un diseño nuevo cada vez.",
     ],
     servicios: ["Identidad de marca", "Manual de marca", "Piezas gráficas"],
-    fotos: [
+    piezas: [
       {
         src: "/work/zuco-pure-1.webp",
         w: 2000,
@@ -253,7 +276,71 @@ export const proyectos: Proyecto[] = [
         src: "/work/zuco-pure-3.webp",
         w: 1080,
         h: 1350,
-        alt: "El logo de Zuco Pure: una rodaja de cítrico sobre el nombre, con la bajada 100% natural",
+        alt: "La tarjeta personal de Zuco Pure sobre un fondo amarillo y naranja",
+      },
+      {
+        src: "/work/zuco-pure-4.webp",
+        w: 1194,
+        h: 1464,
+        alt: "Pieza para mayoristas: media naranja a sangre y el titular «Contactanos y revendé calidad»",
+      },
+    ],
+  },
+  {
+    slug: "pinta-facil",
+    nombre: "Pinta Fácil",
+    rubro: "Pintura y pisos, Córdoba",
+    // ⚠️ TEXTO PROVISORIO. Ailu no mandó el texto de esta marca: lo de abajo
+    // describe SÓLO lo que se ve en las piezas —el rubro, la ciudad, los tipos
+    // de contenido— y no afirma nada sobre estrategia ni resultados. Reemplazar
+    // en cuanto llegue el suyo.
+    resumen:
+      "Contenido para un servicio local: las piezas de marca, las comerciales y las que enseñan algo.",
+    texto: [
+      "Servicio de pintura y colocación de pisos vinílicos en Córdoba. El contenido alterna las piezas de marca con las comerciales y con material que enseña algo: cómo cuidar un piso de PVC, qué colores están en tendencia.",
+      "Las promos van atadas a la temporada y con el contacto directo por WhatsApp en la pieza. Los formatos de participación, como el sorteo de un servicio de pintura, son los que mueven a la audiencia local.",
+    ],
+    servicios: [
+      "Contenido orgánico",
+      "Piezas promocionales",
+      "Contenido educativo",
+    ],
+    piezas: [
+      {
+        src: "/work/pinta-facil-1.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza de marca: un dormitorio de paredes oscuras y el titular «Transformamos tu espacio»",
+      },
+      {
+        src: "/work/pinta-facil-2.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza promocional: un pintor con rodillo y la promo de diciembre con 30% de descuento",
+      },
+      {
+        src: "/work/pinta-facil-3.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza de servicio: un living con piso vinílico y el titular «Renová tus espacios con pisos vinílicos»",
+      },
+      {
+        src: "/work/pinta-facil-4.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Apertura de carrusel: un living amplio y la pregunta «¿Cómo cuidar tus pisos PVC?»",
+      },
+      {
+        src: "/work/pinta-facil-5.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza de contenido: un dormitorio azul con el título «3 colores en tendencia»",
+      },
+      {
+        src: "/work/pinta-facil-6.webp",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza de sorteo: latas y pinceles con el título «Sorteo, ganate un servicio de pintura»",
       },
     ],
   },
@@ -262,7 +349,7 @@ export const proyectos: Proyecto[] = [
 export const hayDemo = proyectos.some((p) => p.demo);
 
 /** Mientras falten las fotos del Drive, la grilla y la cinta lo tienen en cuenta. */
-export const hayFotos = proyectos.some((p) => p.fotos.length > 0);
+export const hayFotos = proyectos.some((p) => p.piezas.length > 0);
 
 export const getProyecto = (slug: string) =>
   proyectos.find((p) => p.slug === slug);

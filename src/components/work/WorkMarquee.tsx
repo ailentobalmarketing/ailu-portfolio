@@ -2,11 +2,12 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import TransitionLink from "@/components/layout/TransitionLink";
-import { proyectos } from "@/data/work";
+import { esVideo, proyectos } from "@/data/work";
 
 /**
  * Cinta con todas las fotos de todos los proyectos, cada una linkeando a su
- * detalle.
+ * detalle. Los videos quedan afuera: cuatro loops corriendo en un riel que ya
+ * se mueve solo es ruido, y peso.
  *
  * Va con **scroll real**, no con una animación de `transform`. Es la única
  * forma de tener a la vez las dos cosas que se pidieron: que se mueva sola y
@@ -41,7 +42,7 @@ const REANUDAR_MS = 2500;
  */
 const slides = proyectos
   .flatMap((p) =>
-    p.fotos.map((f, i) => ({
+    p.piezas.filter((x) => !esVideo(x)).map((f, i) => ({
       key: `${p.slug}-${i}`,
       src: f.src,
       w: f.w,
@@ -49,7 +50,7 @@ const slides = proyectos
       alt: f.alt ?? `${p.nombre} — ${p.rubro}`,
       slug: p.slug,
       nombre: p.nombre,
-      pos: (i + 0.5) / p.fotos.length,
+      pos: (i + 0.5) / p.piezas.filter((x) => !esVideo(x)).length,
     })),
   )
   .sort((a, b) => a.pos - b.pos);

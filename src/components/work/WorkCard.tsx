@@ -1,6 +1,6 @@
 import Image from "next/image";
 import TransitionLink from "@/components/layout/TransitionLink";
-import type { Proyecto } from "@/data/work";
+import { esVideo, type Proyecto } from "@/data/work";
 
 /** La grilla es 1 / 2 columnas (mobile / md). */
 const SIZES = "(max-width: 767px) 100vw, 50vw";
@@ -13,7 +13,9 @@ export default function WorkCard({
   proyecto: Proyecto;
   priority?: boolean;
 }) {
-  const portada = proyecto.fotos[0];
+  // La primera que no sea video: <Image> no puede renderizar un mp4, y basta
+  // con que alguien reordene las piezas para que la grilla explote.
+  const portada = proyecto.piezas.find((x) => !esVideo(x));
 
   return (
     <TransitionLink href={`/trabajos/${proyecto.slug}`} className="group block">

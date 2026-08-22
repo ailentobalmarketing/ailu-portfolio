@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import Reveal from "@/components/layout/Reveal";
 import TransitionLink from "@/components/layout/TransitionLink";
 import { cn } from "@/lib/cn";
-import { getProyecto, proyectos } from "@/data/work";
+import VideoPieza from "@/components/fx/VideoPieza";
+import { esVideo, getProyecto, proyectos } from "@/data/work";
 import { JsonLd, breadcrumbJsonLd, meta, proyectoJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -22,7 +23,7 @@ export async function generateMetadata({
     title: p.nombre,
     description: `${p.resumen} ${p.rubro}.`,
     path: `/trabajos/${p.slug}`,
-    image: p.fotos[0]?.src,
+    image: p.piezas.find((x) => !esVideo(x))?.src,
   });
 }
 
@@ -96,7 +97,7 @@ export default async function Caso({ params }: PageProps<"/trabajos/[slug]">) {
           Dos columnas en mobile y tres de md para arriba; el desfasaje de una
           de cada tres va sólo en desktop, en mobile aprieta de más. */}
       <div className="mt-[var(--section-y)] columns-2 gap-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] md:columns-3">
-        {p.fotos.map((f, i) => (
+        {p.piezas.map((f, i) => (
           <Reveal
             key={f.src}
             className={cn(
@@ -104,15 +105,25 @@ export default async function Caso({ params }: PageProps<"/trabajos/[slug]">) {
               i % 3 === 1 && "md:mt-[clamp(1rem,3vw,3rem)]",
             )}
           >
-            <Image
-              src={f.src}
-              alt={f.alt ?? `${p.nombre} — ${i + 1}`}
-              width={f.w}
-              height={f.h}
-              sizes="(max-width: 767px) 50vw, (max-width: 1344px) 33vw, 28rem"
-              priority={i === 0}
-              className="w-full"
-            />
+            {esVideo(f) ? (
+              <VideoPieza
+                src={f.src}
+                poster={f.poster}
+                w={f.w}
+                h={f.h}
+                alt={f.alt ?? `${p.nombre} — pieza en video`}
+              />
+            ) : (
+              <Image
+                src={f.src}
+                alt={f.alt ?? `${p.nombre} — ${i + 1}`}
+                width={f.w}
+                height={f.h}
+                sizes="(max-width: 767px) 50vw, (max-width: 1344px) 33vw, 28rem"
+                priority={i === 0}
+                className="w-full"
+              />
+            )}
           </Reveal>
         ))}
       </div>

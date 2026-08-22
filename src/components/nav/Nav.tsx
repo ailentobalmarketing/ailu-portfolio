@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
+import { useLenis } from "lenis/react";
 import TransitionLink from "@/components/layout/TransitionLink";
 import { nav, site } from "@/data/site";
 import { cn } from "@/lib/cn";
@@ -15,6 +16,7 @@ export default function Nav() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const boton = useRef<HTMLButtonElement>(null);
+  const lenis = useLenis();
   const overlay = useRef<HTMLElement>(null);
 
   // En desktop el overlay se oculta por CSS: si quedaba abierto al agrandar la
@@ -29,8 +31,17 @@ export default function Nav() {
   useEffect(() => {
     if (!open) return;
 
+    /**
+     * El scroll se frena con la API de Lenis, no tocando `overflow` del body.
+     * Lenis maneja el scroll real de la ventana y sigue escribiendo posiciones
+     * aunque el body diga `hidden`: pelear con él por CSS dejaba a Safari
+     * cambiando el estado de su barra inferior al abrir y cerrar el menú.
+     * `overflow` queda de respaldo para cuando NO hay Lenis — el caso de
+     * reduced-motion, ver SmoothScroll.
+     */
+    lenis?.stop();
     const previo = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    if (!lenis) document.body.style.overflow = "hidden";
 
     // a11y: al abrir, el foco va al primer link; Escape lo devuelve al botón.
     overlay.current?.querySelector<HTMLAnchorElement>("a")?.focus();
@@ -42,10 +53,11 @@ export default function Nav() {
     window.addEventListener("keydown", onKey);
 
     return () => {
+      lenis?.start();
       document.body.style.overflow = previo;
       window.removeEventListener("keydown", onKey);
     };
-  }, [open]);
+  }, [open, lenis]);
 
   return (
     <>

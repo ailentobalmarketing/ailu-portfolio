@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { DM_Sans } from "next/font/google";
 import Nav from "@/components/nav/Nav";
 import Footer from "@/components/layout/Footer";
@@ -17,6 +17,23 @@ const dm = DM_Sans({
   variable: "--font-dm",
   display: "swap",
 });
+
+/**
+ * `viewportFit: "cover"` es la diferencia entre que la página llegue al borde
+ * de la pantalla o que Safari rellene la franja de su barra inferior con el
+ * color de fondo — el bloque blanco que aparecía en iPhone al abrir y cerrar
+ * el menú. Con cover, el contenido pinta por debajo de la barra y lo que se ve
+ * detrás del toolbar flotante es el sitio.
+ *
+ * El precio: hay zonas que quedan tapadas por la barra, así que todo lo que
+ * toca el borde de abajo lleva `env(safe-area-inset-bottom)`.
+ */
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#ffffff",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),

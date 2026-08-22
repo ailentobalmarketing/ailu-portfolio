@@ -48,7 +48,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="es" className={dm.variable}>
       <body>
         <JsonLd data={personJsonLd()} />
-        <SiteBackdrop />
+        <div className="hidden lg:block">
+          <SiteBackdrop />
+        </div>
         <SmoothScroll>
           <PageTransition>
             <Nav />

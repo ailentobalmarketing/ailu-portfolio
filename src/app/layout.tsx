@@ -65,7 +65,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html lang="es" className={dm.variable}>
       <body>
         <JsonLd data={personJsonLd()} />
-        <div className="hidden lg:block">
+        <div className="pointer-events-none lg:pointer-events-auto">
           <SiteBackdrop />
         </div>
         <SmoothScroll>

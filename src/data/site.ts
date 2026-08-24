@@ -15,14 +15,9 @@ export const site = {
   telefono: "+54 2944 393813",
   whatsapp: "https://wa.me/5492944393813",
   linkedin: "https://www.linkedin.com/in/ailén-tobal",
-  url: "https://ailu.rstudios.ar",
+  url: "https://ailentobal.ar",
   /** Para el JSON-LD: a qué se dedica, en vocabulario de schema.org. */
   ocupacion: "Especialista en marketing digital y gestión de redes sociales",
-  alumnoDe: [
-    "Escuela de Comercio Manuel Belgrano — Universidad Nacional de Córdoba",
-    "Universidad Blas Pascal",
-    "Coderhouse",
-  ],
   sabeSobre: [
     "Marketing digital",
     "Gestión de redes sociales",
@@ -56,10 +51,10 @@ export const nav = [
 export const bio = {
   titular: "Hola, soy Ailén.",
   parrafos: [
-    "Soy Técnica Superior en Comercialización y me dedico al marketing digital y la gestión de redes. Empecé en ventas y atención al público, que es donde aprendí lo que ningún curso te enseña: cómo pregunta la gente, qué la frena y qué la decide.",
-    "De ahí pasé al otro lado del mostrador. Hoy trabajo el proceso completo: pienso la estrategia, produzco el contenido —lo filmo y lo edito yo—, llevo las campañas de Meta Ads y después miro los números para entender qué funcionó y ajustar lo que sigue.",
-    "Mi trabajo más largo fue en Batistella, una marca de calzado de cuero con 80 años y 31 sucursales. Ahí llevé el contenido de Instagram y Facebook, la producción audiovisual, las campañas de pauta y las fichas de Google de toda la red de locales.",
-    "Me divierte lo que hago. Disfruto la parte creativa y armar estrategias y contenido que de verdad funcionen, no que sólo se vean bien.",
+    "Soy Técnica Superior en Comercialización y me dedico al marketing digital y la gestión de redes. Empecé en ventas y atención al público, y de ahí pasé al otro lado del mostrador.",
+    "Hoy trabajo el proceso completo: diseño la estrategia, produzco el contenido, manejo las campañas de Meta Ads y analizo las métricas para entender qué funcionó y ajustar lo que sigue.",
+    "Mi experiencia más larga fue en Batistella, una marca de calzado de cuero con 80 años de trayectoria y 31 sucursales. Ahí me encargo del contenido para Instagram y Facebook, la producción audiovisual, las campañas de pauta y las fichas de Google de toda la red de locales.",
+    "Disfruto mucho lo que hago. Me apasiona la parte creativa, armar estrategias y generar contenido que conecte.",
   ],
 } as const;
 
@@ -116,20 +111,4 @@ export const herramientas: Bloque[] = [
     titulo: "Gestión",
     items: ["Google Business Profile", "Google Workspace"],
   },
-];
-
-export type Formacion = { titulo: string; lugar: string };
-
-export const formacion: Formacion[] = [
-  {
-    titulo: "Técnica Superior en Marketing y Ventas",
-    lugar: "Escuela de Comercio Manuel Belgrano — UNC",
-  },
-  {
-    titulo: "Comercio Internacional",
-    lugar: "Universidad Blas Pascal — en curso",
-  },
-  { titulo: "Community Manager", lugar: "Coderhouse" },
-  { titulo: "Meta Ads", lugar: "Coderhouse" },
-  { titulo: "Idiomas", lugar: "Inglés y portugués intermedio" },
 ];

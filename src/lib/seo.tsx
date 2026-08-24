@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { INDEXABLE, formacion, site } from "@/data/site";
+import { INDEXABLE, site } from "@/data/site";
 import { esVideo, type Proyecto } from "@/data/work";
 
 /**
@@ -67,17 +67,6 @@ export function personJsonLd() {
           "@type": "PostalAddress",
           addressCountry: "AR",
         },
-        alumniOf: site.alumnoDe.map((name) => ({
-          "@type": "EducationalOrganization",
-          name,
-        })),
-        hasCredential: formacion
-          .filter((f) => f.titulo !== "Idiomas")
-          .map((f) => ({
-            "@type": "EducationalOccupationalCredential",
-            name: f.titulo,
-            recognizedBy: { "@type": "Organization", name: f.lugar },
-          })),
       },
       {
         "@type": "WebSite",
@@ -108,7 +97,9 @@ export function proyectoJsonLd(p: Proyecto) {
     about: p.rubro,
     keywords: p.servicios.join(", "),
     // Sólo fotos: `image` de schema.org no acepta un video.
-    image: p.piezas.filter((f) => !esVideo(f)).map((f) => `${site.url}${f.src}`),
+    image: p.piezas
+      .filter((f) => !esVideo(f))
+      .map((f) => `${site.url}${f.src}`),
   };
 }
 

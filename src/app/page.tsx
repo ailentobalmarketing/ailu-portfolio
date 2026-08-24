@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Reveal from "@/components/layout/Reveal";
 import WorkMarquee from "@/components/work/WorkMarquee";
-import { bio, formacion, herramientas, queHago, site } from "@/data/site";
+import { bio, herramientas, queHago, site } from "@/data/site";
 
 /**
  * Bio — la portada. Su recorrido contado en primera persona, y debajo la
- * información dura (qué hace, con qué, formación) en columnas que se escanean.
+ * información dura (qué hace, con qué) en columnas que se escanean.
  */
 export default function Bio() {
   return (
@@ -77,42 +77,22 @@ export default function Bio() {
       </section>
       <WorkMarquee className="mt-[var(--section-y)]" />
 
-      <section className="u-shell mt-[var(--section-y)] grid gap-[clamp(2.5rem,2rem+4vw,5rem)] md:grid-cols-2">
-        <div>
-          <Reveal>
-            <h2 className="u-eyebrow">Herramientas</h2>
-          </Reveal>
-          <dl className="mt-8 border-t border-line">
-            {herramientas.map((h, i) => (
-              <Reveal key={h.titulo} delay={0.05 * i}>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line py-4">
-                  <dt className="text-step-0">{h.titulo}</dt>
-                  <dd className="text-[length:var(--step--1)] text-muted">
-                    {h.items.join(" · ")}
-                  </dd>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
-
-        <div>
-          <Reveal>
-            <h2 className="u-eyebrow">Formación</h2>
-          </Reveal>
-          <dl className="mt-8 border-t border-line">
-            {formacion.map((f, i) => (
-              <Reveal key={f.titulo} delay={0.05 * i}>
-                <div className="border-b border-line py-4">
-                  <dt className="text-step-0">{f.titulo}</dt>
-                  <dd className="mt-1 text-[length:var(--step--1)] text-muted">
-                    {f.lugar}
-                  </dd>
-                </div>
-              </Reveal>
-            ))}
-          </dl>
-        </div>
+      <section className="u-shell mt-[var(--section-y)]">
+        <Reveal>
+          <h2 className="u-eyebrow">Herramientas</h2>
+        </Reveal>
+        <dl className="mt-8 border-t border-line">
+          {herramientas.map((h, i) => (
+            <Reveal key={h.titulo} delay={0.05 * i}>
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line py-4">
+                <dt className="text-step-0">{h.titulo}</dt>
+                <dd className="text-[length:var(--step--1)] text-muted">
+                  {h.items.join(" · ")}
+                </dd>
+              </div>
+            </Reveal>
+          ))}
+        </dl>
       </section>
     </>
   );

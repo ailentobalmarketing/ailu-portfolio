@@ -22,9 +22,22 @@ import LiquidEther from "./LiquidEther";
  */
 const COLORS = ["#404040", "#404040"];
 
+/**
+ * `100lvh` y no `inset: 0`: en Safari de iPhone la barra de direcciones crece y
+ * se achica con el scroll, y con `inset: 0` el contenedor la sigue. Cada vez
+ * que cambia de alto el ResizeObserver rehace los FBOs de la simulación — de
+ * ahí el parpadeo — y mientras Safari no reacomoda el elemento fijo queda una
+ * franja sin canvas abajo.
+ *
+ * `lvh` es el viewport con la barra colapsada: el alto no cambia nunca, así que
+ * no hay resize, no hay parpadeo, y el canvas siempre sobra por abajo.
+ */
 const STYLE: CSSProperties = {
   position: "fixed",
-  inset: 0,
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100lvh",
   zIndex: -1,
   pointerEvents: "none",
 };

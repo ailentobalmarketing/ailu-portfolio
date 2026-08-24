@@ -15,7 +15,7 @@ export const site = {
   telefono: "+54 2944 393813",
   whatsapp: "https://wa.me/5492944393813",
   linkedin: "https://www.linkedin.com/in/ailén-tobal",
-  url: "https://ailentobal.ar",
+  url: "https://ailentobal.com.ar",
   /** Para el JSON-LD: a qué se dedica, en vocabulario de schema.org. */
   ocupacion: "Especialista en marketing digital y gestión de redes sociales",
   sabeSobre: [

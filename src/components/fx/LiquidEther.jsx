@@ -125,6 +125,9 @@ export default function LiquidEther({
         this.container = null;
         this.docTarget = null;
         this.listenerTarget = null;
+        this.view = null;
+        this.interactiveQuery = null;
+        this._onQueryChange = null;
         this.isHoverInside = false;
         this.hasUserControl = false;
         this.isAutoActive = false;
@@ -147,16 +150,32 @@ export default function LiquidEther({
         const defaultView =
           (this.docTarget && this.docTarget.defaultView) || (typeof window !== 'undefined' ? window : null);
         if (!defaultView) return;
-        this.listenerTarget = defaultView;
-        this.listenerTarget.addEventListener('mousemove', this._onMouseMove);
-        this.listenerTarget.addEventListener('touchstart', this._onTouchStart, { passive: true });
-        this.listenerTarget.addEventListener('touchmove', this._onTouchMove, { passive: true });
-        this.listenerTarget.addEventListener('touchend', this._onTouchEnd);
-        if (this.docTarget) {
-          this.docTarget.addEventListener('mouseleave', this._onDocumentLeave);
-        }
+        this.view = defaultView;
+        // En mobile el fondo va sólo en automático: seguir el dedo pelea con el
+        // scroll y el fluido pega saltos. De 768px para arriba sí interactúa.
+        this.interactiveQuery = defaultView.matchMedia(`(min-width: ${Common.breakpoint}px)`);
+        this._onQueryChange = () => this.syncListeners();
+        this.interactiveQuery.addEventListener('change', this._onQueryChange);
+        this.syncListeners();
       }
-      dispose() {
+      syncListeners() {
+        const shouldListen = !this.interactiveQuery || this.interactiveQuery.matches;
+        if (shouldListen === !!this.listenerTarget) return;
+        if (shouldListen) {
+          this.listenerTarget = this.view;
+          this.listenerTarget.addEventListener('mousemove', this._onMouseMove);
+          this.listenerTarget.addEventListener('touchstart', this._onTouchStart, { passive: true });
+          this.listenerTarget.addEventListener('touchmove', this._onTouchMove, { passive: true });
+          this.listenerTarget.addEventListener('touchend', this._onTouchEnd);
+          if (this.docTarget) this.docTarget.addEventListener('mouseleave', this._onDocumentLeave);
+          return;
+        }
+        this.removeListeners();
+        // Devolver el control al AutoDriver, que se frena con estos dos flags.
+        this.isHoverInside = false;
+        this.hasUserControl = false;
+      }
+      removeListeners() {
         if (this.listenerTarget) {
           this.listenerTarget.removeEventListener('mousemove', this._onMouseMove);
           this.listenerTarget.removeEventListener('touchstart', this._onTouchStart);
@@ -167,6 +186,14 @@ export default function LiquidEther({
           this.docTarget.removeEventListener('mouseleave', this._onDocumentLeave);
         }
         this.listenerTarget = null;
+      }
+      dispose() {
+        this.removeListeners();
+        if (this.interactiveQuery && this._onQueryChange) {
+          this.interactiveQuery.removeEventListener('change', this._onQueryChange);
+        }
+        this.interactiveQuery = null;
+        this.view = null;
         this.docTarget = null;
         this.container = null;
       }

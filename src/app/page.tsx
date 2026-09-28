@@ -48,9 +48,9 @@ export default function Bio() {
 
       <section className="u-shell mt-[var(--section-y)]">
         <Reveal>
-          <h2 className="u-eyebrow text-center">Qué hago</h2>
+          <h2 className="u-eyebrow">Qué hago</h2>
         </Reveal>
-        <div className="mt-8 grid gap-x-[clamp(1.5rem,1rem+3vw,4rem)] gap-y-10 border-t border-line pt-8 text-center sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-x-[clamp(1.5rem,1rem+3vw,4rem)] gap-y-10 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
           {queHago.map((bloque, i) => (
             <Reveal key={bloque.titulo} delay={0.06 * i}>
               <h3 className="text-step-1 tracking-[-0.02em]">
@@ -74,12 +74,12 @@ export default function Bio() {
 
       <section className="u-shell mt-[var(--section-y)]">
         <Reveal>
-          <h2 className="u-eyebrow text-center">Herramientas</h2>
+          <h2 className="u-eyebrow">Herramientas</h2>
         </Reveal>
-        <dl className="mx-auto mt-8 max-w-2xl border-t border-line text-center">
+        <dl className="mt-8 border-t border-line">
           {herramientas.map((h, i) => (
             <Reveal key={h.titulo} delay={0.05 * i}>
-              <div className="flex flex-col items-center gap-1 border-b border-line py-4">
+              <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 border-b border-line py-4">
                 <dt className="text-step-0">{h.titulo}</dt>
                 <dd className="text-[length:var(--step--1)] text-muted">
                   {h.items.join(" · ")}

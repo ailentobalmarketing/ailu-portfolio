@@ -14,7 +14,7 @@ export const metadata = meta({
 export default function Trabajos() {
   return (
     <section className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
-      <Reveal as="h1" className="text-center text-step-3">
+      <Reveal as="h1" className="text-step-3">
         Últimos trabajos
       </Reveal>
 

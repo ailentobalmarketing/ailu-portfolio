@@ -216,9 +216,9 @@ en `docs/DECISIONES.md` y en los comentarios del código.
 
 ## Forma de trabajar
 
-- **Vercel publica `main` en producción automáticamente.** Para cambios que no
-  sean de texto, conviene trabajar en una rama: Vercel arma una URL de preview
-  para mirarla antes de mergear. Nunca pushees a `main` sin que pase
+- **Vercel publica `main` en producción automáticamente.** Ailu no quiere
+  ramas en este repo (28/09/2026): todo va directo a `main`. Antes de pushear,
+  mostrarle el cambio y esperar su OK, y nunca pushear sin que pase
   `npm run build`.
 - **Probar en mobile**, y en particular en Safari de iPhone: ahí salieron casi
   todos los bugs de este sitio.

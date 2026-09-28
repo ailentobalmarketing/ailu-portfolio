@@ -47,56 +47,36 @@ export const nav = [
   { href: "/contacto", label: "Contacto" },
 ] as const;
 
-/** Los párrafos de la bio, en su voz. Recorrido, no lista de tareas. */
+/** Los párrafos de la bio, en su voz. Corta a propósito: el detalle de cada
+    trabajo vive en /trabajos. */
 export const bio = {
   titular: "Hola, soy Ailén.",
   parrafos: [
-    "Soy Técnica Superior en Comercialización y me dedico al marketing digital y la gestión de redes. Empecé en ventas y atención al público, y de ahí pasé al otro lado del mostrador.",
-    "Hoy trabajo el proceso completo: diseño la estrategia, produzco el contenido, manejo las campañas de Meta Ads y analizo las métricas para entender qué funcionó y ajustar lo que sigue.",
-    "Mi experiencia más larga fue en Batistella, una marca de calzado de cuero con 80 años de trayectoria y 31 sucursales. Ahí me encargo del contenido para Instagram y Facebook, la producción audiovisual, las campañas de pauta y las fichas de Google de toda la red de locales.",
-    "Disfruto mucho lo que hago. Me apasiona la parte creativa, armar estrategias y generar contenido que conecte.",
+    "Soy Técnica Superior en Comercialización y me dedico al marketing digital y a las redes sociales. Empecé en ventas y atención al público, y de a poco pasé al marketing.",
+    "Hace varios años trabajo con marcas de distintos rubros, ayudándolas a encontrar su voz en redes y a conectar con su gente.",
+    "Me divierte lo que hago. Disfruto mucho la parte creativa y ver cómo una idea se convierte en contenido.",
   ],
 } as const;
 
 export type Bloque = { titulo: string; items: string[] };
 
-/** Lo que hace, en cuatro bloques. Reemplaza los 30 bullets del PDF. */
+/** Lo que hace, en cuatro bloques de una línea cada uno. */
 export const queHago: Bloque[] = [
   {
     titulo: "Estrategia",
-    items: [
-      "Objetivos y pilares de contenido",
-      "Público objetivo y perfiles de cliente",
-      "Embudo y recorrido de compra",
-      "Análisis de competencia",
-    ],
+    items: ["Objetivos, público y pilares de contenido"],
   },
   {
     titulo: "Contenido",
-    items: [
-      "Dirección de arte y coherencia visual",
-      "Producción audiovisual: idea, filmación y edición",
-      "Piezas para redes y publicidad",
-      "Redacción orientada a conversión",
-    ],
+    items: ["Piezas y videos para redes, de la idea a la edición"],
   },
   {
     titulo: "Pauta",
-    items: [
-      "Campañas de tráfico, alcance, interacción y mensajes",
-      "Estructura de campaña y presupuestos",
-      "Segmentación, públicos personalizados y similares",
-      "Remarketing",
-    ],
+    items: ["Campañas en Meta Ads que se miden y se ajustan"],
   },
   {
-    titulo: "Gestión y medición",
-    items: [
-      "Instagram, Facebook y TikTok",
-      "Mensajería, comentarios y comunidad",
-      "Google Business Profile y presencia local",
-      "Indicadores, pruebas A/B y reportes",
-    ],
+    titulo: "UGC",
+    items: ["Videos con mi cara y mi voz para tu marca"],
   },
 ];
 

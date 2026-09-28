@@ -112,6 +112,7 @@ export default async function Caso({ params }: PageProps<"/trabajos/[slug]">) {
                 w={f.w}
                 h={f.h}
                 alt={f.alt ?? `${p.nombre} — pieza en video`}
+                sonido={f.sonido}
               />
             ) : (
               <Image

@@ -23,7 +23,10 @@ export async function generateMetadata({
     title: p.nombre,
     description: `${p.resumen} ${p.rubro}.`,
     path: `/trabajos/${p.slug}`,
-    image: p.piezas.find((x) => !esVideo(x))?.src,
+    // La misma portada que la grilla: la primera pieza, o su poster si es video.
+    image: esVideo(p.piezas[0])
+      ? (p.piezas[0].poster ?? p.piezas.find((x) => !esVideo(x))?.src)
+      : p.piezas[0]?.src,
   });
 }
 

@@ -19,7 +19,7 @@ export default function WorkCard({
   const primera = proyecto.piezas[0];
   const portada =
     primera && esVideo(primera) && primera.poster
-      ? { src: primera.poster, alt: primera.alt }
+      ? { src: primera.poster, alt: primera.alt, encuadre: primera.encuadre }
       : proyecto.piezas.find((x) => !esVideo(x));
 
   return (
@@ -32,6 +32,11 @@ export default function WorkCard({
             fill
             sizes={SIZES}
             priority={priority}
+            style={
+              portada.encuadre
+                ? { objectPosition: portada.encuadre }
+                : undefined
+            }
             className="object-cover transition-transform duration-700 ease-[var(--ease-soft)] group-hover:scale-[1.03] motion-reduce:transform-none"
           />
         ) : (

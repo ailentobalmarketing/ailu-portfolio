@@ -34,6 +34,10 @@ export type Pieza = {
       piezas seguidas con el mismo grupo se muestran juntas y con su título en
       el detalle. Sin grupo, el mosaico va de corrido como siempre. */
   grupo?: string;
+  /** Sólo si es la portada: qué parte queda a la vista en el recorte 4:5 de
+      la grilla (CSS `object-position`, por ejemplo "50% 80%"). Por defecto,
+      el centro. */
+  encuadre?: string;
 };
 
 /** La extensión ES el tipo: no hace falta un campo aparte que se desincronice. */
@@ -76,13 +80,14 @@ export const proyectos: Proyecto[] = [
     // lo más relevante (28/09/2026); el resto del material está en su compu.
     piezas: [
       {
-        src: "/work/batistella-v3.mp4",
+        src: "/work/batistella-v7.mp4",
         grupo: "Primavera-verano",
         w: 720,
         h: 1280,
-        poster: "/work/batistella-v3-poster.jpg",
+        poster: "/work/batistella-v7-poster.jpg",
+        encuadre: "50% 85%",
         sonido: true,
-        alt: "Video de Ailén hablando a cámara sobre las sandalias de taco, en el local",
+        alt: "Video de Ailén en la puerta del local presentando las sandalias de la temporada",
       },
       {
         src: "/work/batistella-2.jpg",
@@ -127,13 +132,13 @@ export const proyectos: Proyecto[] = [
         alt: "Placa de la liquidación de temporada: botas de gamuza marrón",
       },
       {
-        src: "/work/batistella-v5.mp4",
+        src: "/work/batistella-v8.mp4",
         grupo: "Liquidación de invierno",
         w: 720,
         h: 1280,
-        poster: "/work/batistella-v5-poster.jpg",
+        poster: "/work/batistella-v8-poster.jpg",
         sonido: true,
-        alt: "Video de Ailén mostrando una bota croco en la liquidación",
+        alt: "Video de Ailén anunciando la preliquidación de otoño-invierno en el local",
       },
       {
         src: "/work/batistella-8.jpg",
@@ -211,12 +216,6 @@ export const proyectos: Proyecto[] = [
     ],
     servicios: ["Contenido UGC", "Guion", "Grabación y edición"],
     piezas: [
-      {
-        src: "/work/sommy-1.jpg",
-        w: 1080,
-        h: 1920,
-        alt: "Ailén de pie frente a los colchones de Sommy, con el cartel de la marca atrás",
-      },
       {
         src: "/work/sommy-v1.mp4",
         w: 720,

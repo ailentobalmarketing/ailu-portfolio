@@ -53,84 +53,68 @@ export default async function Caso({ params }: PageProps<"/trabajos/[slug]">) {
     <article className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
       <JsonLd data={proyectoJsonLd(p)} />
       <JsonLd data={breadcrumbJsonLd(p)} />
-      <Reveal>
-        <TransitionLink
-          href="/trabajos"
-          className="u-eyebrow transition-opacity duration-500 ease-[var(--ease-soft)] hover:opacity-60"
-        >
-          ← Trabajos
-        </TransitionLink>
-      </Reveal>
+      {/* Encabezado centrado y corto: nombre, una línea, un párrafo y la
+          ficha en una sola línea. Lo que importa son las piezas. */}
+      <header className="flex flex-col items-center text-center">
+        <Reveal>
+          <TransitionLink
+            href="/trabajos"
+            className="u-eyebrow transition-opacity duration-500 ease-[var(--ease-soft)] hover:opacity-60"
+          >
+            ← Trabajos
+          </TransitionLink>
+        </Reveal>
 
-      <Reveal as="h1" delay={0.05} className="mt-8 text-step-3">
-        {p.nombre}
-      </Reveal>
+        <Reveal as="h1" delay={0.05} className="mt-8 text-step-3">
+          {p.nombre}
+        </Reveal>
 
-      <div className="mt-[clamp(2rem,1.5rem+3vw,4rem)] grid gap-[clamp(2rem,1rem+4vw,5rem)] md:grid-cols-[1fr_minmax(0,16rem)] md:items-start">
-        <div className="flex flex-col gap-5">
-          <Reveal as="p" delay={0.1}>
-            <span className="u-measure block text-step-1 leading-snug tracking-[-0.02em]">
-              {p.resumen}
-            </span>
+        <Reveal as="p" delay={0.1} className="mt-6">
+          <span className="u-measure mx-auto block text-step-1 leading-snug tracking-[-0.02em]">
+            {p.resumen}
+          </span>
+        </Reveal>
+        {p.texto.map((t, i) => (
+          <Reveal key={t.slice(0, 24)} as="p" delay={0.14 + 0.05 * i} className="mt-5">
+            <span className="u-measure mx-auto block text-ink/80">{t}</span>
           </Reveal>
-          {p.texto.map((t, i) => (
-            <Reveal key={t.slice(0, 24)} as="p" delay={0.14 + 0.05 * i}>
-              <span className="u-measure block text-ink/80">{t}</span>
-            </Reveal>
-          ))}
-        </div>
+        ))}
 
-        <Reveal delay={0.18}>
-          <dl className="border-t border-line">
-            <div className="flex items-baseline justify-between gap-4 border-b border-line py-3">
-              <dt className="u-eyebrow">Rubro</dt>
-              <dd className="text-[length:var(--step--1)]">{p.rubro}</dd>
-            </div>
-            <div className="border-b border-line py-3">
-              <dt className="u-eyebrow">Qué hice</dt>
-              <dd className="mt-2 flex flex-col gap-1">
-                {p.servicios.map((s) => (
-                  <span key={s} className="text-[length:var(--step--1)]">
-                    {s}
-                  </span>
-                ))}
-              </dd>
-            </div>
+        <Reveal delay={0.18} className="mt-8">
+          <dl className="flex flex-col items-center gap-2">
+            <dt className="sr-only">Rubro</dt>
+            <dd className="u-eyebrow">{p.rubro}</dd>
+            <dt className="sr-only">Qué hice</dt>
+            <dd className="text-[length:var(--step--1)] text-muted">
+              {p.servicios.join(" · ")}
+            </dd>
           </dl>
         </Reveal>
-      </div>
+      </header>
 
-      {/* Mosaico en columnas, no una pila. Las piezas son 4:5, 9:16, 1:1 y 3:2
-          mezcladas: a lo ancho de la medida una sola vertical ocupaba más que
-          una pantalla. `columns` reparte sin pelearse con la proporción de cada
-          una, y como cada columna cierra a distinta altura el borde de abajo
-          queda disparejo solo — ése es el desorden, no hace falta fabricarlo.
-          Dos columnas en mobile y tres de md para arriba; el desfasaje de una
-          de cada tres va sólo en desktop, en mobile aprieta de más. */}
+      {/* Grilla prolija de 2 columnas en celular y 3 en compu, con las piezas
+          alineadas arriba. Antes era un mosaico en `columns` con una columna
+          desfasada; Ailu pidió algo más limpio y centrado (28/09/2026). */}
       {/* Si las piezas tienen `grupo`, cada colección va con su título y su
           propio mosaico. Sin grupos queda un único mosaico sin título. */}
       {agrupar(p.piezas).map((g, gi) => (
         <section key={g.titulo ?? gi} className="mt-[var(--section-y)]">
           {g.titulo && (
             <Reveal>
-              <h2 className="u-eyebrow border-b border-line pb-3">
+              <h2 className="u-eyebrow text-center">
                 {g.titulo}
               </h2>
             </Reveal>
           )}
           <div
             className={cn(
-              "columns-2 gap-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] md:columns-3",
+              "grid grid-cols-2 items-start gap-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] md:grid-cols-3",
               g.titulo && "mt-6",
             )}
           >
             {g.piezas.map((f, i) => (
               <Reveal
                 key={f.src}
-                className={cn(
-                  "mb-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] break-inside-avoid",
-                  i % 3 === 1 && "md:mt-[clamp(1rem,3vw,3rem)]",
-                )}
               >
                 {esVideo(f) ? (
                   <VideoPieza

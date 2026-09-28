@@ -38,8 +38,8 @@ export default function WorkCard({
         )}
       </figure>
 
-      <h2 className="mt-4 text-step-1 tracking-[-0.02em]">{proyecto.nombre}</h2>
-      <p className="mt-1 text-[length:var(--step--1)] text-muted">
+      <h2 className="mt-4 text-center text-step-1 tracking-[-0.02em]">{proyecto.nombre}</h2>
+      <p className="mt-1 text-center text-[length:var(--step--1)] text-muted">
         {proyecto.rubro}
       </p>
     </TransitionLink>

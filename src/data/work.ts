@@ -62,8 +62,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Un ecosistema de contenido completo y campañas de temporada en fases, con un objetivo por etapa.",
     texto: [
-      "Marca argentina de calzado de cuero con más de 80 años de trayectoria y presencia federal a través de sus sucursales. Trabajo el ecosistema de contenido completo: orgánico en Instagram, Facebook y TikTok, creatividades para pauta y piezas para punto de venta.",
-      "El foco está en las campañas comerciales: cada temporada se estructura en fases —adelanto, preventa, lanzamiento— con un objetivo comercial claro en cada una. La lógica es separar la emoción de la promoción: el contenido emocional engancha, la pieza comercial cierra. Y sostener formatos interactivos que conviertan audiencia en tráfico real, tanto al e-commerce como a las sucursales.",
+      "Marca argentina de calzado de cuero con más de 80 años de trayectoria. Llevo el contenido orgánico, las creatividades para pauta y las campañas de cada temporada, pensadas en fases y con un objetivo claro en cada una.",
     ],
     servicios: [
       "Contenido orgánico",
@@ -71,8 +70,9 @@ export const proyectos: Proyecto[] = [
       "Campañas por temporada",
       "Piezas para punto de venta",
     ],
-    // Tres colecciones, de la más nueva a la más vieja: primavera-verano,
-    // cápsulas y la liquidación de invierno. La portada sale de primavera-verano.
+    // Tres colecciones de tres piezas, de la más nueva a la más vieja:
+    // primavera-verano, cápsulas y la liquidación de invierno. Ailu quiere sólo
+    // lo más relevante (28/09/2026); el resto del material está en su compu.
     piezas: [
       {
         src: "/work/batistella-1.jpg",
@@ -80,45 +80,6 @@ export const proyectos: Proyecto[] = [
         w: 1063,
         h: 1890,
         alt: "Primavera-verano: una modelo con cartera y camisa celeste, y los adjetivos «Elegante, práctica, moderna»",
-      },
-      {
-        src: "/work/batistella-v6.mp4",
-        grupo: "Primavera-verano",
-        w: 720,
-        h: 1280,
-        poster: "/work/batistella-v6-poster.jpg",
-        sonido: true,
-        alt: "Video de Ailén en el depósito mostrando los modelos de primavera-verano",
-      },
-      {
-        src: "/work/batistella-2.jpg",
-        grupo: "Primavera-verano",
-        w: 1063,
-        h: 1890,
-        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
-      },
-      {
-        src: "/work/batistella-3.jpg",
-        grupo: "Primavera-verano",
-        w: 1063,
-        h: 1890,
-        alt: "Primavera-verano: sandalias con tachas y una cámara de fotos, con el título «Sandalias»",
-      },
-      {
-        src: "/work/batistella-v2.mp4",
-        grupo: "Primavera-verano",
-        w: 720,
-        h: 1280,
-        poster: "/work/batistella-v2-poster.jpg",
-        sonido: true,
-        alt: "Video de detalle de unos zapatos de cuero",
-      },
-      {
-        src: "/work/batistella-4.jpg",
-        grupo: "Primavera-verano",
-        w: 1063,
-        h: 1890,
-        alt: "Primavera-verano: una mujer en una reposera junto a la pileta, con zuecos de cuero",
       },
       {
         src: "/work/batistella-v3.mp4",
@@ -130,13 +91,11 @@ export const proyectos: Proyecto[] = [
         alt: "Video de Ailén hablando a cámara sobre las sandalias de taco, en el local",
       },
       {
-        src: "/work/batistella-v7.mp4",
+        src: "/work/batistella-2.jpg",
         grupo: "Primavera-verano",
-        w: 720,
-        h: 1280,
-        poster: "/work/batistella-v7-poster.jpg",
-        sonido: true,
-        alt: "Video de Ailén en la puerta del local presentando las sandalias de la temporada",
+        w: 1063,
+        h: 1890,
+        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
       },
       {
         src: "/work/batistella-5.jpg",
@@ -158,36 +117,6 @@ export const proyectos: Proyecto[] = [
         w: 1080,
         h: 1350,
         alt: "Cápsula Texanas: botas altas de gamuza marrón con hebillas y el texto «Más actitud»",
-      },
-      {
-        src: "/work/batistella-10.jpg",
-        grupo: "Cápsulas",
-        w: 1080,
-        h: 1350,
-        alt: "Cápsula Texanas: botas con cadena y el texto «Más personalidad»",
-      },
-      {
-        src: "/work/batistella-11.jpg",
-        grupo: "Cápsulas",
-        w: 1080,
-        h: 1350,
-        alt: "Cápsula Texanas: bota negra de gamuza y el texto «Diseñadas para destacar»",
-      },
-      {
-        src: "/work/batistella-12.jpg",
-        grupo: "Cápsulas",
-        w: 1080,
-        h: 1350,
-        alt: "Cápsula Texanas: botas marrones de caña alta y el texto «Cuero que trasciende temporadas»",
-      },
-      {
-        src: "/work/batistella-v8.mp4",
-        grupo: "Liquidación de invierno",
-        w: 720,
-        h: 1280,
-        poster: "/work/batistella-v8-poster.jpg",
-        sonido: true,
-        alt: "Video de Ailén anunciando la preliquidación de otoño-invierno en el local",
       },
       {
         src: "/work/batistella-7.jpg",
@@ -212,15 +141,6 @@ export const proyectos: Proyecto[] = [
         h: 1350,
         alt: "Placa de la liquidación: hasta 50% off y 6 cuotas sin interés, sobre fondo negro",
       },
-      {
-        src: "/work/batistella-v9.mp4",
-        grupo: "Liquidación de invierno",
-        w: 720,
-        h: 1280,
-        poster: "/work/batistella-v9-poster.jpg",
-        sonido: true,
-        alt: "Video de detalle de unas texanas negras en liquidación",
-      },
     ],
   },
   {
@@ -230,8 +150,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Traducir un producto técnico a un lenguaje visual que rinda en pauta sin perder el ADN de la marca.",
     texto: [
-      "Marca brasilera de calzado de trekking. El desafío era llevar un producto técnico a piezas que funcionen en performance sin que la marca se desdibuje en el camino.",
-      "Desarrollé creatividades para campañas de pauta y contenido para el sitio, trabajando el equilibrio entre el argumento funcional —durabilidad, agarre, terreno— y el aspiracional: la experiencia de salir a la montaña. Cada pieza pensada para un formato y un objetivo específico, con variantes para testear ángulos de mensaje.",
+      "Marca brasilera de calzado de trekking. Hice creatividades para pauta y contenido para la web, buscando el equilibrio entre lo técnico del producto y la experiencia de salir a la montaña.",
     ],
     servicios: [
       "Creatividades para pauta",
@@ -252,6 +171,13 @@ export const proyectos: Proyecto[] = [
         alt: "Pieza de la tecnología Flutua+: una mujer entre rocas y el detalle de la zapatilla de trekking",
       },
       {
+        src: "/work/macboot-v1.mp4",
+        w: 720,
+        h: 1280,
+        poster: "/work/macboot-v1-poster.webp",
+        alt: "Video de campaña de Macboot",
+      },
+      {
         src: "/work/macboot-3.webp",
         w: 1200,
         h: 1200,
@@ -262,25 +188,6 @@ export const proyectos: Proyecto[] = [
         w: 1080,
         h: 1080,
         alt: "Pieza de la tecnología Amphibious: la zapatilla impermeable en el agua y el barro",
-      },
-      {
-        src: "/work/macboot-5.webp",
-        w: 934,
-        h: 1126,
-        alt: "Pieza sobre fondo verde: una bota negra de trekking con el título «Protección y resistencia»",
-      },
-      {
-        src: "/work/macboot-v1.mp4",
-        w: 720,
-        h: 1280,
-        poster: "/work/macboot-v1-poster.webp",
-        alt: "Video de campaña de Macboot",
-      },
-      {
-        src: "/work/macboot-8.jpg",
-        w: 1080,
-        h: 1920,
-        alt: "Placa vertical de pauta de la tecnología Flutua+: una mujer sentada entre rocas y el detalle de la zapatilla",
       },
       {
         src: "/work/macboot-v2.mp4",
@@ -349,8 +256,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Identidad, manual de marca y contenido con un objetivo que no era vender sesiones: construir comunidad.",
     texto: [
-      "Espacio de terapias holísticas en Bariloche. Trabajé la identidad completa: desarrollo de marca y manual de uso, más la estrategia de contenido orgánico.",
-      "El objetivo no era vender sesiones sino construir comunidad. El contenido acompaña la trayectoria del espacio y sostiene un vínculo real con la audiencia: mostrar el lugar, las prácticas y las personas detrás, con una identidad visual coherente que le da unidad a todo lo que la marca publica.",
+      "Espacio de terapias holísticas en Bariloche. Armé la identidad, el manual de marca y la estrategia de contenido, con un objetivo claro: construir comunidad más que vender sesiones.",
     ],
     servicios: ["Identidad de marca", "Manual de uso", "Contenido orgánico"],
     piezas: [
@@ -387,8 +293,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Un sistema de marca simple y replicable, para no depender de un diseño nuevo cada vez.",
     texto: [
-      "Marca de jugos naturales. Desarrollo de identidad visual y manual de marca, con foco en un sistema simple y replicable: paleta, tipografías, uso de logo y criterios de aplicación.",
-      "A partir de ese sistema produje las placas y piezas gráficas para redes, pensadas para que la marca pueda sostener una comunicación consistente en el tiempo sin depender de un diseño nuevo cada vez.",
+      "Marca de jugos naturales. Desarrollé la identidad, el manual de marca y, a partir de ahí, las piezas para redes.",
     ],
     servicios: [
       "Identidad de marca",
@@ -432,12 +337,6 @@ export const proyectos: Proyecto[] = [
         h: 1350,
         alt: "La tarjeta personal de Zuco Pure sobre un fondo amarillo y naranja",
       },
-      {
-        src: "/work/zuco-pure-4.webp",
-        w: 1194,
-        h: 1464,
-        alt: "Pieza para mayoristas: media naranja a sangre y el titular «Contactanos y revendé calidad»",
-      },
     ],
   },
   {
@@ -451,8 +350,7 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Contenido para un servicio local: las piezas de marca, las comerciales y las que enseñan algo.",
     texto: [
-      "Servicio de pintura y colocación de pisos vinílicos en Córdoba. El contenido alterna las piezas de marca con las comerciales y con material que enseña algo: cómo cuidar un piso de PVC, qué colores están en tendencia.",
-      "Las promos van atadas a la temporada y con el contacto directo por WhatsApp en la pieza. Los formatos de participación, como el sorteo de un servicio de pintura, son los que mueven a la audiencia local.",
+      "Servicio de pintura y pisos vinílicos en Córdoba. Contenido para redes que alterna piezas de marca, promos de temporada y tips útiles.",
     ],
     servicios: [
       "Contenido orgánico",

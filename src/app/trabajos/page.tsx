@@ -6,7 +6,7 @@ import { meta } from "@/lib/seo";
 export const metadata = meta({
   title: "Trabajos",
   description:
-    "Proyectos de contenido, pauta y gestión de redes para marcas de gastronomía, indumentaria, bienestar y comercio local.",
+    "Proyectos de contenido, pauta, UGC e identidad para marcas de calzado, bienestar, alimentos y comercio local.",
   path: "/trabajos",
 });
 
@@ -14,7 +14,7 @@ export const metadata = meta({
 export default function Trabajos() {
   return (
     <section className="u-shell pt-[clamp(3rem,2rem+6vw,7rem)]">
-      <Reveal as="h1" className="text-step-3">
+      <Reveal as="h1" className="text-center text-step-3">
         Últimos trabajos
       </Reveal>
 

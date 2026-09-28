@@ -5,7 +5,7 @@ import Reveal from "@/components/layout/Reveal";
 import TransitionLink from "@/components/layout/TransitionLink";
 import { cn } from "@/lib/cn";
 import VideoPieza from "@/components/fx/VideoPieza";
-import { esVideo, getProyecto, proyectos } from "@/data/work";
+import { esVideo, getProyecto, proyectos, type Pieza } from "@/data/work";
 import { JsonLd, breadcrumbJsonLd, meta, proyectoJsonLd } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -25,6 +25,17 @@ export async function generateMetadata({
     path: `/trabajos/${p.slug}`,
     image: p.piezas.find((x) => !esVideo(x))?.src,
   });
+}
+
+/** Junta las piezas seguidas que comparten `grupo`, respetando el orden. */
+function agrupar(piezas: Pieza[]) {
+  const grupos: { titulo?: string; piezas: Pieza[] }[] = [];
+  for (const f of piezas) {
+    const ultimo = grupos.at(-1);
+    if (ultimo && ultimo.titulo === f.grupo) ultimo.piezas.push(f);
+    else grupos.push({ titulo: f.grupo, piezas: [f] });
+  }
+  return grupos;
 }
 
 /**
@@ -96,38 +107,56 @@ export default async function Caso({ params }: PageProps<"/trabajos/[slug]">) {
           queda disparejo solo — ése es el desorden, no hace falta fabricarlo.
           Dos columnas en mobile y tres de md para arriba; el desfasaje de una
           de cada tres va sólo en desktop, en mobile aprieta de más. */}
-      <div className="mt-[var(--section-y)] columns-2 gap-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] md:columns-3">
-        {p.piezas.map((f, i) => (
-          <Reveal
-            key={f.src}
+      {/* Si las piezas tienen `grupo`, cada colección va con su título y su
+          propio mosaico. Sin grupos queda un único mosaico sin título. */}
+      {agrupar(p.piezas).map((g, gi) => (
+        <section key={g.titulo ?? gi} className="mt-[var(--section-y)]">
+          {g.titulo && (
+            <Reveal>
+              <h2 className="u-eyebrow border-b border-line pb-3">
+                {g.titulo}
+              </h2>
+            </Reveal>
+          )}
+          <div
             className={cn(
-              "mb-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] break-inside-avoid",
-              i % 3 === 1 && "md:mt-[clamp(1rem,3vw,3rem)]",
+              "columns-2 gap-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] md:columns-3",
+              g.titulo && "mt-6",
             )}
           >
-            {esVideo(f) ? (
-              <VideoPieza
-                src={f.src}
-                poster={f.poster}
-                w={f.w}
-                h={f.h}
-                alt={f.alt ?? `${p.nombre} — pieza en video`}
-                sonido={f.sonido}
-              />
-            ) : (
-              <Image
-                src={f.src}
-                alt={f.alt ?? `${p.nombre} — ${i + 1}`}
-                width={f.w}
-                height={f.h}
-                sizes="(max-width: 767px) 50vw, (max-width: 1344px) 33vw, 28rem"
-                priority={i === 0}
-                className="w-full"
-              />
-            )}
-          </Reveal>
-        ))}
-      </div>
+            {g.piezas.map((f, i) => (
+              <Reveal
+                key={f.src}
+                className={cn(
+                  "mb-[clamp(0.4rem,0.2rem+1.4vw,1.25rem)] break-inside-avoid",
+                  i % 3 === 1 && "md:mt-[clamp(1rem,3vw,3rem)]",
+                )}
+              >
+                {esVideo(f) ? (
+                  <VideoPieza
+                    src={f.src}
+                    poster={f.poster}
+                    w={f.w}
+                    h={f.h}
+                    alt={f.alt ?? `${p.nombre} — pieza en video`}
+                    sonido={f.sonido}
+                  />
+                ) : (
+                  <Image
+                    src={f.src}
+                    alt={f.alt ?? `${p.nombre} — ${i + 1}`}
+                    width={f.w}
+                    height={f.h}
+                    sizes="(max-width: 767px) 50vw, (max-width: 1344px) 33vw, 28rem"
+                    priority={gi === 0 && i === 0}
+                    className="w-full"
+                  />
+                )}
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      ))}
     </article>
   );
 }

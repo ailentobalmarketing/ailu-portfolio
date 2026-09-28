@@ -30,6 +30,10 @@ export type Pieza = {
       donde la voz importa (UGC, alguien hablando a cámara). El mp4 tiene que
       tener audio: el estándar general es sin audio. */
   sonido?: boolean;
+  /** Colección a la que pertenece («Primavera-verano», «Cápsulas»…). Las
+      piezas seguidas con el mismo grupo se muestran juntas y con su título en
+      el detalle. Sin grupo, el mosaico va de corrido como siempre. */
+  grupo?: string;
 };
 
 /** La extensión ES el tipo: no hace falta un campo aparte que se desincronice. */
@@ -67,17 +71,19 @@ export const proyectos: Proyecto[] = [
       "Campañas por temporada",
       "Piezas para punto de venta",
     ],
-    // Primavera-verano primero (la temporada en curso) y después la
-    // liquidación de otoño-invierno. Los videos van intercalados con las placas.
+    // Tres colecciones, de la más nueva a la más vieja: primavera-verano,
+    // cápsulas y la liquidación de invierno. La portada sale de primavera-verano.
     piezas: [
       {
         src: "/work/batistella-1.jpg",
+        grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
         alt: "Primavera-verano: una modelo con cartera y camisa celeste, y los adjetivos «Elegante, práctica, moderna»",
       },
       {
         src: "/work/batistella-v1.mp4",
+        grupo: "Primavera-verano",
         w: 720,
         h: 1280,
         poster: "/work/batistella-v1-poster.jpg",
@@ -86,18 +92,21 @@ export const proyectos: Proyecto[] = [
       },
       {
         src: "/work/batistella-2.jpg",
+        grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
         alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
       },
       {
         src: "/work/batistella-3.jpg",
+        grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
         alt: "Primavera-verano: sandalias con tachas y una cámara de fotos, con el título «Sandalias»",
       },
       {
         src: "/work/batistella-v2.mp4",
+        grupo: "Primavera-verano",
         w: 720,
         h: 1280,
         poster: "/work/batistella-v2-poster.jpg",
@@ -106,12 +115,14 @@ export const proyectos: Proyecto[] = [
       },
       {
         src: "/work/batistella-4.jpg",
+        grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
         alt: "Primavera-verano: una mujer en una reposera junto a la pileta, con zuecos de cuero",
       },
       {
         src: "/work/batistella-v3.mp4",
+        grupo: "Primavera-verano",
         w: 720,
         h: 1280,
         poster: "/work/batistella-v3-poster.jpg",
@@ -120,12 +131,49 @@ export const proyectos: Proyecto[] = [
       },
       {
         src: "/work/batistella-5.jpg",
+        grupo: "Cápsulas",
         w: 1080,
         h: 1350,
         alt: "Lanzamiento de la cápsula Texanas: una bota con flecos sobre tierra colorada",
       },
       {
+        src: "/work/batistella-6.jpg",
+        grupo: "Cápsulas",
+        w: 1080,
+        h: 1350,
+        alt: "Cápsula Texanas: botas negras con tachas y el texto «Más carácter»",
+      },
+      {
+        src: "/work/batistella-9.jpg",
+        grupo: "Cápsulas",
+        w: 1080,
+        h: 1350,
+        alt: "Cápsula Texanas: botas altas de gamuza marrón con hebillas y el texto «Más actitud»",
+      },
+      {
+        src: "/work/batistella-10.jpg",
+        grupo: "Cápsulas",
+        w: 1080,
+        h: 1350,
+        alt: "Cápsula Texanas: botas con cadena y el texto «Más personalidad»",
+      },
+      {
+        src: "/work/batistella-11.jpg",
+        grupo: "Cápsulas",
+        w: 1080,
+        h: 1350,
+        alt: "Cápsula Texanas: bota negra de gamuza y el texto «Diseñadas para destacar»",
+      },
+      {
+        src: "/work/batistella-12.jpg",
+        grupo: "Cápsulas",
+        w: 1080,
+        h: 1350,
+        alt: "Cápsula Texanas: botas marrones de caña alta y el texto «Cuero que trasciende temporadas»",
+      },
+      {
         src: "/work/batistella-v4.mp4",
+        grupo: "Liquidación de invierno",
         w: 720,
         h: 1280,
         poster: "/work/batistella-v4-poster.jpg",
@@ -133,19 +181,15 @@ export const proyectos: Proyecto[] = [
         alt: "Video del anuncio de la liquidación de otoño-invierno, en el local",
       },
       {
-        src: "/work/batistella-6.jpg",
-        w: 1080,
-        h: 1350,
-        alt: "Cápsula Texanas: botas negras con tachas y el texto «Más carácter»",
-      },
-      {
         src: "/work/batistella-7.jpg",
+        grupo: "Liquidación de invierno",
         w: 1080,
         h: 1350,
         alt: "Placa de la liquidación de temporada: botas de gamuza marrón",
       },
       {
         src: "/work/batistella-v5.mp4",
+        grupo: "Liquidación de invierno",
         w: 720,
         h: 1280,
         poster: "/work/batistella-v5-poster.jpg",
@@ -154,6 +198,7 @@ export const proyectos: Proyecto[] = [
       },
       {
         src: "/work/batistella-8.jpg",
+        grupo: "Liquidación de invierno",
         w: 1080,
         h: 1350,
         alt: "Placa de la liquidación: hasta 50% off y 6 cuotas sin interés, sobre fondo negro",

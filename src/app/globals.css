@@ -327,6 +327,15 @@ html[data-vt="page"]::view-transition-new(root) {
   }
 }
 
+/* En celular no hay fondo líquido: blanco liso. Sin mouse, el fluido se movía
+   solo y no se entendía qué era (pedido de Ailu, 28/09/2026). Con
+   `display: none` el contenedor deja de intersecar y el rAF se pausa. */
+@media (max-width: 767px) {
+  .site-backdrop {
+    display: none;
+  }
+}
+
 /* ============================================================
    MEZCLA CON EL FONDO — el fluido pasa por detrás de todo, así que el texto
    va en `multiply`: negro por cualquier cosa sigue siendo negro y nunca se

@@ -20,7 +20,9 @@ import LiquidEther from "./LiquidEther";
  *    fueran props literales, cada render entregaría un array nuevo, el effect
  *    vería `colors` cambiado y reconstruiría toda la simulación WebGL de cero.
  */
-const COLORS = ["#404040", "#404040"];
+// Gris muy suave a pedido de Ailu (28/09/2026): el #404040 de antes quedaba
+// oscuro y le sacaba protagonismo a los trabajos.
+const COLORS = ["#e4e4e4", "#e4e4e4"];
 
 /**
  * `100lvh` y no `inset: 0`: en Safari de iPhone la barra de direcciones crece y

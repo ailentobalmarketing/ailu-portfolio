@@ -59,7 +59,7 @@ Los bugs de iPhone se reprodujeron y verificaron en Safari de un iPhone 17
 - **Fotos a color** en la grilla, la cinta y el detalle. Sólo el retrato de la
   bio va en blanco y negro.
 - **Footer en bloque de tinta plano.** Los rayos de luz se probaron y se sacaron.
-- **Fondo líquido** gris (`#404040`) detrás de todo el sitio.
+- **Fondo líquido** gris muy suave (`#e4e4e4`, antes `#404040`) detrás de todo el sitio, sólo en desktop. En celular se sacó (28/09/2026): sin mouse no se entendía.
 
 ---
 

@@ -187,8 +187,9 @@ en `docs/DECISIONES.md` y en los comentarios del código.
 - **`SiteBackdrop`**: el `position: fixed` va por `style` inline (LiquidEther lo
   pisa si viene por clase), el alto es `100lvh` y no `inset: 0` (evita el
   parpadeo en Safari) y las props son constantes de módulo (un array nuevo por
-  render reconstruye la simulación WebGL entera). Sólo sigue al mouse de 768 px
-  para arriba y se apaga con reduced-motion.
+  render reconstruye la simulación WebGL entera). Sólo existe de 768 px para
+  arriba (en celular el fondo es blanco liso), es un gris muy suave
+  (`#e4e4e4`) y se apaga con reduced-motion.
 - **`LiquidEther.jsx` es un componente de React Bits con cambios locales**,
   como el breakpoint táctil. No lo reemplaces por la versión de upstream.
 - **La cinta (`WorkMarquee`) usa scroll real, no `transform`**, para que se

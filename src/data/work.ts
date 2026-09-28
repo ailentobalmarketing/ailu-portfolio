@@ -62,7 +62,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Un ecosistema de contenido completo y campañas de temporada en fases, con un objetivo por etapa.",
     texto: [
-      "Marca argentina de calzado de cuero con más de 80 años de trayectoria. Llevo el contenido orgánico, las creatividades para pauta y las campañas de cada temporada, pensadas en fases y con un objetivo claro en cada una.",
+      "Marca argentina de calzado de cuero con más de 80 años de trayectoria y presencia federal a través de sus sucursales. Trabajo el ecosistema de contenido completo: orgánico en Instagram, Facebook y TikTok, creatividades para pauta y piezas para punto de venta.",
+      "El foco está en las campañas comerciales: cada temporada se estructura en fases —adelanto, preventa, lanzamiento— con un objetivo comercial claro en cada una. La lógica es separar la emoción de la promoción: el contenido emocional engancha, la pieza comercial cierra. Y sostener formatos interactivos que conviertan audiencia en tráfico real, tanto al e-commerce como a las sucursales.",
     ],
     servicios: [
       "Contenido orgánico",
@@ -75,11 +76,11 @@ export const proyectos: Proyecto[] = [
     // lo más relevante (28/09/2026); el resto del material está en su compu.
     piezas: [
       {
-        src: "/work/batistella-1.jpg",
+        src: "/work/batistella-2.jpg",
         grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
-        alt: "Primavera-verano: una modelo con cartera y camisa celeste, y los adjetivos «Elegante, práctica, moderna»",
+        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
       },
       {
         src: "/work/batistella-v3.mp4",
@@ -91,11 +92,11 @@ export const proyectos: Proyecto[] = [
         alt: "Video de Ailén hablando a cámara sobre las sandalias de taco, en el local",
       },
       {
-        src: "/work/batistella-2.jpg",
+        src: "/work/batistella-3.jpg",
         grupo: "Primavera-verano",
         w: 1063,
         h: 1890,
-        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
+        alt: "Primavera-verano: sandalias con tachas y una cámara de fotos, con el título «Sandalias»",
       },
       {
         src: "/work/batistella-5.jpg",
@@ -150,7 +151,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Traducir un producto técnico a un lenguaje visual que rinda en pauta sin perder el ADN de la marca.",
     texto: [
-      "Marca brasilera de calzado de trekking. Hice creatividades para pauta y contenido para la web, buscando el equilibrio entre lo técnico del producto y la experiencia de salir a la montaña.",
+      "Marca brasilera de calzado de trekking. El desafío era llevar un producto técnico a piezas que funcionen en performance sin que la marca se desdibuje en el camino.",
+      "Desarrollé creatividades para campañas de pauta y contenido para el sitio, trabajando el equilibrio entre el argumento funcional —durabilidad, agarre, terreno— y el aspiracional: la experiencia de salir a la montaña. Cada pieza pensada para un formato y un objetivo específico, con variantes para testear ángulos de mensaje.",
     ],
     servicios: [
       "Creatividades para pauta",
@@ -256,7 +258,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Identidad, manual de marca y contenido con un objetivo que no era vender sesiones: construir comunidad.",
     texto: [
-      "Espacio de terapias holísticas en Bariloche. Armé la identidad, el manual de marca y la estrategia de contenido, con un objetivo claro: construir comunidad más que vender sesiones.",
+      "Espacio de terapias holísticas en Bariloche. Trabajé la identidad completa: desarrollo de marca y manual de uso, más la estrategia de contenido orgánico.",
+      "El objetivo no era vender sesiones sino construir comunidad. El contenido acompaña la trayectoria del espacio y sostiene un vínculo real con la audiencia: mostrar el lugar, las prácticas y las personas detrás, con una identidad visual coherente que le da unidad a todo lo que la marca publica.",
     ],
     servicios: ["Identidad de marca", "Manual de uso", "Contenido orgánico"],
     piezas: [
@@ -293,7 +296,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Un sistema de marca simple y replicable, para no depender de un diseño nuevo cada vez.",
     texto: [
-      "Marca de jugos naturales. Desarrollé la identidad, el manual de marca y, a partir de ahí, las piezas para redes.",
+      "Marca de jugos naturales. Desarrollo de identidad visual y manual de marca, con foco en un sistema simple y replicable: paleta, tipografías, uso de logo y criterios de aplicación.",
+      "A partir de ese sistema produje las placas y piezas gráficas para redes, pensadas para que la marca pueda sostener una comunicación consistente en el tiempo sin depender de un diseño nuevo cada vez.",
     ],
     servicios: [
       "Identidad de marca",
@@ -350,7 +354,8 @@ export const proyectos: Proyecto[] = [
     resumen:
       "Contenido para un servicio local: las piezas de marca, las comerciales y las que enseñan algo.",
     texto: [
-      "Servicio de pintura y pisos vinílicos en Córdoba. Contenido para redes que alterna piezas de marca, promos de temporada y tips útiles.",
+      "Servicio de pintura y colocación de pisos vinílicos en Córdoba. El contenido alterna las piezas de marca con las comerciales y con material que enseña algo: cómo cuidar un piso de PVC, qué colores están en tendencia.",
+      "Las promos van atadas a la temporada y con el contacto directo por WhatsApp en la pieza. Los formatos de participación, como el sorteo de un servicio de pintura, son los que mueven a la audiencia local.",
     ],
     servicios: [
       "Contenido orgánico",

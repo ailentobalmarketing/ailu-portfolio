@@ -133,9 +133,11 @@ public/work/<slug>-v1-poster.webp   ← primer cuadro del video
 
 ### Cómo se muestran
 
-- **Portada en la grilla**: la **primera pieza que no es video**, recortada a
-  4:5 (vertical). Conviene que sea una pieza que aguante ese recorte.
-- **Detalle del caso**: mosaico de 2 columnas en celular y 3 en compu, en el
+- **Portada en la grilla**: la **primera pieza** (si es un video, su poster),
+  recortada a 4:5 (vertical). Conviene que sea una pieza que aguante ese recorte.
+- **Colecciones**: si las piezas llevan `grupo` («Primavera-verano»…), el caso
+  las muestra juntas y con título.
+- **Detalle del caso**: grilla de 2 columnas en celular y 3 en compu, en el
   orden del array, cada pieza con su proporción real.
 - **Cinta de la home**: todas las fotos de todos los proyectos, intercaladas.
   Los videos no entran.

@@ -13,9 +13,14 @@ export default function WorkCard({
   proyecto: Proyecto;
   priority?: boolean;
 }) {
-  // La primera que no sea video: <Image> no puede renderizar un mp4, y basta
-  // con que alguien reordene las piezas para que la grilla explote.
-  const portada = proyecto.piezas.find((x) => !esVideo(x));
+  // La portada es la primera pieza. Si es un video se usa su poster: <Image>
+  // no puede renderizar un mp4. Si un video no tiene poster, se cae a la
+  // primera foto para que la grilla no quede vacía.
+  const primera = proyecto.piezas[0];
+  const portada =
+    primera && esVideo(primera) && primera.poster
+      ? { src: primera.poster, alt: primera.alt }
+      : proyecto.piezas.find((x) => !esVideo(x));
 
   return (
     <TransitionLink href={`/trabajos/${proyecto.slug}`} className="group block">

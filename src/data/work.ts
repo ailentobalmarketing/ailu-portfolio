@@ -76,13 +76,6 @@ export const proyectos: Proyecto[] = [
     // lo más relevante (28/09/2026); el resto del material está en su compu.
     piezas: [
       {
-        src: "/work/batistella-2.jpg",
-        grupo: "Primavera-verano",
-        w: 1063,
-        h: 1890,
-        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
-      },
-      {
         src: "/work/batistella-v3.mp4",
         grupo: "Primavera-verano",
         w: 720,
@@ -90,6 +83,13 @@ export const proyectos: Proyecto[] = [
         poster: "/work/batistella-v3-poster.jpg",
         sonido: true,
         alt: "Video de Ailén hablando a cámara sobre las sandalias de taco, en el local",
+      },
+      {
+        src: "/work/batistella-2.jpg",
+        grupo: "Primavera-verano",
+        w: 1063,
+        h: 1890,
+        alt: "Primavera-verano: unos zuecos de cuero sobre una reposera a rayas amarillas",
       },
       {
         src: "/work/batistella-3.jpg",

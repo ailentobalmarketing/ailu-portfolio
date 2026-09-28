@@ -132,8 +132,9 @@ scroll, la nav, el fondo o cualquier cosa de mobile, leé `docs/DECISIONES.md`.
 - **`w` y `h` tienen que ser las medidas reales del archivo.** `next/image` las usa
   para reservar el lugar antes de cargar: si mienten, el contenido salta.
 - El tipo sale de la extensión (`esVideo()` mira `.mp4`). No hay campo `tipo`.
-- El orden del array es el orden del mosaico. La **portada** en la grilla es la
-  primera pieza que **no** es video, recortada a 4:5.
+- El orden del array es el orden de la grilla. La **portada** en la grilla es la
+  primera pieza (si es un video, su poster), recortada a 4:5. Las piezas con
+  `grupo` se muestran por colección, con título.
 - Cada pieza lleva un `alt` propio que describe qué se ve y de qué campaña es.
 - Estándar de peso: fotos en **WebP**, hasta 2000 px de ancho y, en lo posible,
   menos de 500 KB. Videos en **MP4 H.264, 720 px de ancho, sin audio**, con un

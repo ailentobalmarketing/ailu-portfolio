@@ -237,8 +237,6 @@ export const proyectos: Proyecto[] = [
       "Creatividades para pauta",
       "Contenido para web",
       "Testeo de mensajes",
-      "Tarjetón impreso",
-      "Moodboard de lanzamiento",
     ],
     piezas: [
       {
@@ -290,24 +288,6 @@ export const proyectos: Proyecto[] = [
         h: 1280,
         poster: "/work/macboot-v2-poster.jpg",
         alt: "Video de campaña de Macboot: la zapatilla de trekking en la montaña, con doble absorción de impacto",
-      },
-      {
-        src: "/work/macboot-6.jpg",
-        w: 1600,
-        h: 1064,
-        alt: "Frente del tarjetón de Macboot: una pareja caminando entre árboles en la montaña",
-      },
-      {
-        src: "/work/macboot-7.jpg",
-        w: 1600,
-        h: 1064,
-        alt: "Dorso del tarjetón de Macboot: «Gracias por elegir caminar diferente» y un QR a la comunidad",
-      },
-      {
-        src: "/work/macboot-9.jpg",
-        w: 1414,
-        h: 2000,
-        alt: "Moodboard del lanzamiento de Macboot en Batistella: fotos de referencia, paleta y tipografías",
       },
     ],
   },
@@ -413,7 +393,6 @@ export const proyectos: Proyecto[] = [
     servicios: [
       "Identidad de marca",
       "Manual de marca",
-      "Etiquetas",
       "Piezas gráficas",
     ],
     piezas: [
@@ -424,10 +403,28 @@ export const proyectos: Proyecto[] = [
         alt: "Flyer de nuevos sabores: tres botellas de jugo sobre bandas de color, con el nombre de cada shot",
       },
       {
+        src: "/work/zuco-pure-5.jpg",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza «Dosis de energía & detox»: dos manos con botellas de jugo",
+      },
+      {
         src: "/work/zuco-pure-2.webp",
         w: 1080,
         h: 1350,
         alt: "La línea completa de jugos sobre fondo blanco, con dos vasos servidos",
+      },
+      {
+        src: "/work/zuco-pure-6.jpg",
+        w: 1080,
+        h: 1350,
+        alt: "Pieza de lanzamiento «Algo nuevo está llegando», con frutas y la lista del mix de vitalidad",
+      },
+      {
+        src: "/work/zuco-pure-10.jpg",
+        w: 1080,
+        h: 1350,
+        alt: "El logo de Zuco Pure en blanco sobre verde lima",
       },
       {
         src: "/work/zuco-pure-3.webp",
@@ -440,42 +437,6 @@ export const proyectos: Proyecto[] = [
         w: 1194,
         h: 1464,
         alt: "Pieza para mayoristas: media naranja a sangre y el titular «Contactanos y revendé calidad»",
-      },
-      {
-        src: "/work/zuco-pure-5.jpg",
-        w: 1080,
-        h: 1350,
-        alt: "Pieza «Dosis de energía & detox»: dos manos con botellas de jugo",
-      },
-      {
-        src: "/work/zuco-pure-6.jpg",
-        w: 1080,
-        h: 1350,
-        alt: "Pieza de lanzamiento «Algo nuevo está llegando», con frutas y la lista del mix de vitalidad",
-      },
-      {
-        src: "/work/zuco-pure-7.jpg",
-        w: 1131,
-        h: 1600,
-        alt: "Etiqueta negra del shot Green Reset, con ingredientes y beneficios",
-      },
-      {
-        src: "/work/zuco-pure-8.jpg",
-        w: 1131,
-        h: 1600,
-        alt: "Etiqueta blanca del shot Power, con ingredientes y beneficios",
-      },
-      {
-        src: "/work/zuco-pure-9.jpg",
-        w: 1131,
-        h: 1600,
-        alt: "Etiqueta negra del shot Defense, con ingredientes y beneficios",
-      },
-      {
-        src: "/work/zuco-pure-10.jpg",
-        w: 1080,
-        h: 1350,
-        alt: "El logo de Zuco Pure en blanco sobre verde lima",
       },
     ],
   },
